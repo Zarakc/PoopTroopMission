@@ -33,10 +33,7 @@ eventHandlerVehicle = {
 			_pod = "Land_ToiletBox_F" createVehicle getPos _projectile;
 			deleteVehicle _projectile;
 			_pod setVelocity _projectileVelocity;
-			
-			diag_log format["Debug - Pod is", _pod];
-			systemChat format["Debug - Pod is", _pod];
-			
+
 			//03/16 20:20MST Commented this out to see if it broke the script calls below
 			//missionNamespace setVariable ["pod", _pod];//TODO: Check use
 

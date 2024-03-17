@@ -12,10 +12,10 @@ _unit setPosATL getPosATL _pooPod;
 _unit attachTo [_pooPod, [0,0.8,-1]];
 _unit setDir 180;
 
-diag_log "Debug - ImpactEventHandler - Spawning Unit Code End";
+diag_log "Debug - poopTroopSpawn - Spawning Unit Code End";
 
 //Open pod and allow unit to be injured
-diag_log ["Debug - Opening: ", _pooPod];
+diag_log ["Debug - poopTroopSpawn - Opening: ", _pooPod];
 
 //TODO: Maybe have the pod on the ground for a second/enough time to loop before opening?
 //Open the pod door
@@ -26,3 +26,5 @@ sleep 1;
 deleteVehicle _pooPod;
 //TODO: Disable damage before hitting the ground or solve the spiraling pod ground slam issue all over.
 _unit allowDamage true;
+
+diag_log "Debug - poopTroopSpawn - Code End";

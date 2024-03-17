@@ -60,59 +60,7 @@ waitUntil {
 	(_loopCount > 4) || (_Hz < PT_MANUAL_CHECK_STOP_HEIGHT);//TODO: Check if this addition fixes the pods getting stuck on the buildings
 };//Could look at the pod being on the ground for a certain amount of time
 
-
-//Creating landing crater
-//Create a separate test for this to figure out positioning - Nice to have anyway
-/*diag_log "Debug - crater creation start";
-_crater = createVehicle["Land_ShellCrater_02_small_F", _pod];
-_craterPOS = getPosATL _crater;
-_crater setPosATL [_craterPOS select 0 - 5, _craterPOS select 1, 0];*/
-
-//diag_log "Debug - Before poopGroup set";
-
-//Grab the poop group paired with our vehicle
-//_poopGroup = _y select 1; //missionNameSpace getVariable "poopGroup";
-
-//Create a brand new boy to bring into the world in a porta potty
-// if(isNil "_poopGroup") then {
-// 	_poopGroup = createGroup east;
-// 	//TODO: use publicVaribleServer for when it's server collect3DENHistory
-// 	missionNameSpace setVariable["poopGroup", _poopGroup];
-// 	diag_log "Set poopGroup variable";
-// };
-
 diag_log "Debug - pooPodManualDecelDetection - Calling poopTroopSpawn";
 diag_log "Debug - pooPodManualDecelDetection - Calling poopTroopSpawn";
 
 [_pod, _poopGroup, _vehicle] execVM "pooperTroopers\scripts\poopTroopSpawn.sqf";
-
-// playSound3D [PT_POD_IMPACT_NOISE, _pod, false, getPosATL _pod, 5/*Volume*/, 1/*Pitch*/];//, 50/*Distance*/];
-
-// diag_log format["%1 creating unit for %2", _vehicle, _poopGroup];
-
-// diag_log "Debug - After poopGroup if/else block";
-
-// //Test to make adjustments for crater spawn
-// _pod setVelocity [0, 0, 0];
-// diag_log "Debug - Spawning Unit Code Start";
-// //Rifleman Early USSR - "UK3CB_CW_SOV_O_EARLY_RIF_2"
-// //Armored Rifleman Late USSR - "UK3CB_CW_SOV_O_LATE_RIF_2"
-// //Armored Special Forces Rifleman Late USSR - "UK3CB_CW_SOV_O_LATE_SF_RIF_2"
-// _unit = _poopGroup createUnit ["UK3CB_CW_SOV_O_EARLY_RIF_2", [0,0,0], [], 0, "FORM"];
-// _unit allowDamage false;
-// _unit setPosATL getPosATL _pod;
-// _unit attachTo [_pod, [0,0.8,-1]];
-// _unit setDir 180;
-// diag_log "Debug - Spawning Unit Code End";
-
-// diag_log ["Debug - Opening: ", _pod];
-
-// //TODO: Maybe have the pod on the ground for a second/enough time to loop before opening?
-// //Open the pod door
-// _pod animate ["door_1_rot", 1];
-
-// sleep 1;
-
-// deleteVehicle _pod;
-// //TODO: Disable damage before hitting the ground or solve the spiraling pod ground slam issue all over.
-// _unit allowDamage true;
