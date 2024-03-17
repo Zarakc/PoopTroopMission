@@ -3,8 +3,8 @@
 //Manually detect pod height and engage thrusters prior to impact
 //params [_pod, _vehicle, _poopGroup];
 _pod = _this select 0;
-_vehicle = _this select 1;
-_poopGroup = _this select 2;
+_poopGroup = _this select 1;
+_vehicle = _this select 2;
 
 diag_log "Debug - Called pooPodManualDecelDetection";
 systemChat "Debug - Called pooPodManualDecelDetection";
@@ -16,8 +16,8 @@ _Vx = 0;
 _Vy = 0;
 _Vz = 0;
 
-diag_log "Debug - pooPodManualDecelDetection - Initial sleep start";
-systemChat "Debug - pooPodManualDecelDetection - Initial sleep start";
+diag_log "PodManualDetection - Initial sleep start";
+systemChat "PodManualDetection - Initial sleep start";
 
 sleep 28;
 
@@ -36,7 +36,7 @@ waitUntil {
 	_Hz = _posATL select 2;
 	
 	if(_Hz < PT_MANUAL_CHECK_DEBUG_HEIGHT) then {
-		diag_log ["Debug - ", _Hz, _loopCount, _pod];
+		diag_log ["PodManualDetection - Height Check For Decel ", _Hz, _loopCount, _pod];
 		_loopCount = _loopCount + 1;
 	};
 	
@@ -50,17 +50,17 @@ waitUntil {
 playSound3D [PT_POD_DECEL_NOISE, _pod, false, getPosATL _pod, 5, 1];//Sound previously played after setting the decell velocity
 		
 //Activate deceleration thrusters
-diag_log ["Debug - Decellerating: ", _pod];
+diag_log ["PodManualDetection - Decellerating: ", _pod];
 _pod setVelocity [0, 0, -0.05];//[_Vx, _Vy, -0.05]; resulted in a lot of sliding
 
 //Wait until we've touched ground
 waitUntil {
 	_Hz = getPosATL _pod select 2;
-	diag_log [_Hz, _pod];
+	diag_log ["PodManualDetection - Height Check For Spawn ", _Hz, _pod];
 	(_loopCount > 4) || (_Hz < PT_MANUAL_CHECK_STOP_HEIGHT);//TODO: Check if this addition fixes the pods getting stuck on the buildings
 };//Could look at the pod being on the ground for a certain amount of time
 
-diag_log "Debug - pooPodManualDecelDetection - Calling poopTroopSpawn";
-diag_log "Debug - pooPodManualDecelDetection - Calling poopTroopSpawn";
+diag_log "PodManualDetection - Calling poopTroopSpawn";
+systemChat "PodManualDetection - Calling poopTroopSpawn";
 
 [_pod, _poopGroup, _vehicle] execVM "pooperTroopers\scripts\poopTroopSpawn.sqf";

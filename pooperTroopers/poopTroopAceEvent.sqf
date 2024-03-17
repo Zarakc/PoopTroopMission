@@ -37,13 +37,18 @@ eventHandlerVehicle = {
 			//03/16 20:20MST Commented this out to see if it broke the script calls below
 			//missionNamespace setVariable ["pod", _pod];//TODO: Check use
 
-			// diag_log "Debug - Calling pooPodImpactEventHandler";
-			// systemChat "Debug - Calling pooPodImpactEventHandler.sqf";
-			// [_pod, _poopGroup] execVM "pooperTroopers\scripts\pooPodImpactEventHandler.sqf";
-			
-			diag_log "Debug - Calling pooPodManualDecelDetection";
-			systemChat "Debug - Calling pooPodManualDecelDetection.sqf";
-			[_pod, _vehicle, _poopGroup] execVM "pooperTroopers\scripts\pooPodManualDecelDetection.sqf";
+			if(PT_IMPACT_EVENT_FOR_PODS == true) then {
+				//Use the impact detection event for the unit spawning/opening
+				diag_log "Debug - Calling pooPodImpactEventHandler";
+				systemChat "Debug - Calling pooPodImpactEventHandler.sqf";
+				[_pod, _poopGroup, _vehicle] execVM "pooperTroopers\scripts\pooPodImpactEventHandler.sqf";
+
+			} else {
+				//Use the height waitUntils
+				diag_log "Debug - Calling pooPodManualDecelDetection";
+				systemChat "Debug - Calling pooPodManualDecelDetection.sqf";
+				[_pod, _poopGroup, _vehicle] execVM "pooperTroopers\scripts\pooPodManualDecelDetection.sqf";
+			};
 
 			// [_pod, _vehicle, _poopGroup] spawn {
 			// 	params ["_pod", "_vehicle", "_poopGroup"];
