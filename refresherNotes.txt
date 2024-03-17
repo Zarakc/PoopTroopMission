@@ -1,14 +1,16 @@
 Function Call/Variable syntax
 
+//Function Call
 [_player, _one, _two] execVM "path/to/script.sqf";
 
+//params syntax option in function
 params ["_player". "_one", "_two"]
 
-Not sure why our references of _varName did not work
+//Needs to have the "'s around the variable names or it causes issues
 
-But
-
+//params alternative syntax in function
 _player = _this select 0;
 _one = _this select 1;
+_two = _this select 2;
 
 syntax works for sure

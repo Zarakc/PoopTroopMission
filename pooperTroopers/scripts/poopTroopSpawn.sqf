@@ -1,8 +1,10 @@
 #include "..\poopTroopConstants.sqf";
 
-_pooPod = _this select 0;
-_poopGroup = _this select 1;
-_launchVehicle = _this select 2;
+params ["_pooPod", "_poopGroup", "_launchVehicle"];
+
+// _pooPod = _this select 0;
+// _poopGroup = _this select 1;
+// _launchVehicle = _this select 2;
 
 diag_log format["PoopTroopSpawn - %1 creating unit for %2", _launchVehicle, _poopGroup];
 
