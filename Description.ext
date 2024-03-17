@@ -1,0 +1,116 @@
+respawn = "BASE";
+respawnTemplates[] = { "BDRM_respawn" };
+
+class BDRMConfig {
+	version = "1.5.1";
+	respawnMarkerName = "bdrm_respawn";
+	sideRespawnMarkerName = "respawn_west";
+	loadoutVariableName = "bdrm_savedLoadout";
+	respawnDistanceMinimum = 1;
+	respawnDistanceMaximum = 10;
+	showRespawnNotification = 1;
+
+	class EnterVehicleTypeRespawn {
+		active = 0;
+		vehicleType = "ace_spottingscopeobject";
+	};
+
+	class ParachuteRespawn {
+		aboveTerrainLevel = 0;
+		vehicleType = "rhs_d6_Parachute";
+	};
+
+	class ACETaggingRespawn {
+		active = 0;
+		respawnTexture = "bad_dudes_head.paa";
+	};
+
+	class VehicleRespawn {
+		respawnMarkerName = "bdrm_respawn_vehicle";
+		respawnTime = 5;
+		markerActive = 0;
+		respawnOnMarkerPositionUpdate = 1;
+		invulnerabilitySafety = 1;
+		deleteWrecks = 0;
+		respawnDistanceMinimum = 5;
+		respawnDistanceMaximum = 15;
+	};
+}
+
+class CfgFunctions
+{
+	class BDRM
+	{
+		class functions
+		{
+			file = "bdrm\functions";
+			class savePlayerLoadout {};
+			class loadPlayerLoadout {};
+			class respawnPlayer {};
+			class getRespawnPosition {};
+			class setRespawnMarkerPosition {};
+			class diag_log {};
+			class respawnVehicle {};
+			class registerVehicleRespawn {};
+			class setItemCargoGlobal {};
+			class setMagazineCargoGlobal {};
+			class setWeaponCargoGlobal {};
+			class setBackpackCargoGlobal {};
+			class getVehicleRespawnPosition {};
+			class setVehicleRespawnMarkerPosition {};
+			class getAnimationState {};
+			class setAnimationState {};
+			class setObjectTextures {};
+			class setPylonState {};
+		};
+	};
+};
+
+class CfgRespawnTemplates
+{
+	class BDRM_respawn
+	{
+		respawnOnStart = 0;
+		respawnButton = 1;
+		onPlayerKilled = "bdrm\scripts\onPlayerKilled.sqf";
+		onPlayerRespawn = "bdrm\scripts\onPlayerRespawn.sqf";
+	};
+};
+
+class ACE_Tags {
+    class BDRM_bad_dude_tag {
+		displayName = "Bad Dude Respawn";
+		requiredItem = "ACE_SpraypaintRed";
+		textures[] = { "bdrm\assets\bad_dudes_head.paa" };
+		icon = "bdrm\assets\bad_dudes_head.paa";
+	};
+};
+
+class CfgNotifications {
+	class BDRMRespawn {
+		title = "BDRM Respawn";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+		description = "Respawn Position Updated";
+		color[] = { 1, 1, 1, 1};
+		duration = 5;
+		priority = 0;
+	};
+
+	class BDRMVehicleRespawn {
+		title = "BDRM Respawn";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+		description = "Vehicle Respawn Position Updated";
+		color[] = { 1, 1, 1, 1};
+		duration = 5;
+		priority = 0;
+	};
+
+	class BDRMVehicleRespawned {
+		title = "BDRM Vehicle Respawn";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+		description = "%1 respawned";
+		color[] = { 1, 1, 1, 1};
+		duration = 5;
+		priority = 0;
+	};
+};

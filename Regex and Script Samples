@@ -1,0 +1,16 @@
+^[0-9]{2}:[0-9]{2}:[0-9]{2} \[
+,1e[0-9a-z]{9}#
+: toiletbox_f.p3d\]
+
+arty1Cmdr commandArtilleryFire [getMarkerPos "dump1", "rhs_mag_3of56_35", 10];
+arty2Cmdr commandArtilleryFire [getMarkerPos "dump1", "rhs_mag_3of56_35", 10];
+arty3Cmdr commandArtilleryFire [getMarkerPos "dump1", "rhs_mag_3of56_35", 10];
+arty4Cmdr commandArtilleryFire [getMarkerPos "dump1", "rhs_mag_3of56_35", 10];
+arty5Cmdr commandArtilleryFire [getMarkerPos "dump1", "rhs_mag_3of56_35", 10];
+call{arty4Cmdr commandArtilleryFire [getMarkerPos "dump1", "rhs_mag_3of56_35", 3];}
+testGuy setDamage 0;
+
+playSound3D ["A3\Sounds_F\sfx\missions\vehicle_collision.wss", testGuy, false, getPosATL testGuy, 1, 1, 50];
+
+ca\data_baf\Music\crash.ogg
+rhsusf\addons\rhsusf_a2port_air\data\sounds\ejection_sound.wss
