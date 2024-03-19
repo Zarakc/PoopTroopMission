@@ -1,25 +1,19 @@
 #include "..\poopTroopConstants.sqf";
 
 //Manually detect pod height and engage thrusters prior to impact
-params ["_pod", "_poopGroup", "_vehicle"];//Issues without quotes around the variables
-// _pod = _this select 0;
-// _poopGroup = _this select 1;
-// _vehicle = _this select 2;
-
-diag_log "Debug - Called pooPodManualDecelDetection";
-systemChat "Debug - Called pooPodManualDecelDetection";
-
-//We don't want our droppod to end up killing the unitAddons
-//Wait until we've launched and then presumably hit the ground and slowed
-sleep 2;
-_Vx = 0;
-_Vy = 0;
-_Vz = 0;
+params ["_pod", "_poopGroup", "_vehicle"];//Issues without quotes around the variables 
 
 diag_log "PodManualDetection - Initial sleep start";
 systemChat "PodManualDetection - Initial sleep start";
 
-sleep 28;
+sleep PT_INITIAL_SLEEP_ON_LAUNCH;
+
+//We don't want our droppod to end up killing the unitAddons
+//Wait until we've launched and then presumably hit the ground and slowed
+_Vx = 0;
+_Vy = 0;
+_Vz = 0;
+//TODO: Velocity can go as it is all currently unused
 
 //Declare local var loopCount outside the waitUntil so we can use that to break out of being stuck on a building
 _loopCount = 0;
@@ -53,11 +47,24 @@ playSound3D [PT_POD_DECEL_NOISE, _pod, false, getPosATL _pod, 5, 1];//Sound prev
 diag_log ["PodManualDetection - Decellerating: ", _pod];
 _pod setVelocity [0, 0, -0.05];//[_Vx, _Vy, -0.05]; resulted in a lot of sliding
 
+//Set the prevHeight up to use for looping
+//Not resetting the loopCount since if it's already 4, we've been stuck and need to break out
+_prevHeight = PT_MANUAL_CHECK_DECEL_HEIGHT;
+_stuck = false;
+
 //Wait until we've touched ground
-waitUntil {//TODO: Add check to ensure if the pod is stuck, we increment and break from the wait
+waitUntil {
 	_Hz = getPosATL _pod select 2;
-	diag_log ["PodManualDetection - Height Check For Spawn ", _Hz, _pod];
-	(_loopCount > 4) || (_Hz < PT_MANUAL_CHECK_STOP_HEIGHT);//TODO: Check if this addition fixes the pods getting stuck on the buildings
+
+	if (_Hz != _prevHeight) then {
+		_prevHeight = _Hz;
+		diag_log format["PodManualDetection -  Loop %1 - Height Check %2 For Spawn %3", _loopCount, _Hz, _pod];
+	} else {
+		_stuck = true;
+		diag_log ["PodManualDetection - Same height, we're stuck ", _Hz, _pod];
+	};
+
+	(_Hz < PT_MANUAL_CHECK_STOP_HEIGHT) || (_stuck isEqualTo true);
 };//Could look at the pod being on the ground for a certain amount of time
 
 diag_log "PodManualDetection - Calling poopTroopSpawn";
