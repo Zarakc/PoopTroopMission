@@ -17,7 +17,7 @@ waitUntil {
 	if(_Hz < PT_MANUAL_CHECK_DEBUG_HEIGHT) then {
 		[
 			format[
-				"PodManualDetection - Decel Pod %1 - Height Check %2",
+				"PodManualDetection - Pod %1 - Decel Height Check %2",
 				_pod,
 				_Hz
 			]
@@ -37,7 +37,7 @@ waitUntil {
 playSound3D [PT_POD_DECEL_NOISE, _pod, false, getPosATL _pod, 2/*Volume WAS 5*/, 1];//Sound previously played after setting the decell velocity
 		
 //Activate deceleration thrusters
-[format["PodManualDetection - Decellerating %1", _pod]] execVM PT_DEBUG_SQF;//TODO Validate if this works
+[format["PodManualDetection - Pod %1 Decellerating", _pod]] execVM PT_DEBUG_SQF;//TODO Validate if this works
 _pod setVelocity [0, 0, -0.05];//[_Vx, _Vy, -0.05]; resulted in a lot of sliding
 
 //Set the prevHeight up to use for looping
@@ -51,10 +51,10 @@ waitUntil {
 
 	if (_Hz != _prevHeight) then {
 		_prevHeight = _Hz;
-		[format["PodManualDetection -  Height Check %1 For Spawn %2", _Hz, _pod]] execVM PT_DEBUG_SQF;
-	} else {
+		[format["PodManualDetection - Pod %1 - Spawn Height Check %2", _pod, _Hz]] execVM PT_DEBUG_SQF;
+	} else {//TODO: Verify this is handled correctly. Seems to trigger immediately based on logs
 		_stuck = true;
-		[format["PodManualDetection - Same height %1 pod %2 stuck ", _Hz, _pod]] execVM PT_DEBUG_SQF;
+		[format["PodManualDetection - Pod %1 - Same height %2  - Stuck ", _Hz, _pod]] execVM PT_DEBUG_SQF;
 	};
 
 	(_Hz < PT_MANUAL_CHECK_STOP_HEIGHT) || (_stuck isEqualTo true);
