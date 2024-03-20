@@ -1,6 +1,13 @@
 #define PT_LOCAL_SCRIPTS true
+#define PT_DEBUG_MODE "LOCAL"//SERVER,LOCAL
+#define PT_DEBUG_HEADER "[PoopTroop] - "
+#define PT_DEBUG_SQF "pooperTroopers\scripts\helpers\debugMessages.sqf"
 #define PT_IMPACT_EVENT_FOR_PODS false
 
+//Pod launching constants
+#define PT_COORDINATE_VARIANCE 20
+
+//Pod spawning constants
 #define PT_INITIAL_SLEEP_ON_LAUNCH 28
 
 #define PT_MANUAL_CHECK_DEBUG_HEIGHT 20

@@ -3,8 +3,7 @@
 //Manually detect pod height and engage thrusters prior to impact
 params ["_pod", "_poopGroup", "_vehicle"];//Issues without quotes around the variables 
 
-diag_log "PodManualDetection - Initial sleep start";
-systemChat "PodManualDetection - Initial sleep start";
+["PodManualDetection - Initial sleep start"] execVM PT_DEBUG_SQF;
 
 sleep PT_INITIAL_SLEEP_ON_LAUNCH;
 
@@ -30,9 +29,17 @@ waitUntil {
 	_Hz = _posATL select 2;
 	
 	if(_Hz < PT_MANUAL_CHECK_DEBUG_HEIGHT) then {
-		diag_log ["PodManualDetection - Height Check For Decel ", _Hz, _loopCount, _pod];
+		[
+			format[
+				"PodManualDetection - Decel Height Check %1 - Loop %2 - Pod %3",
+				_Hz,
+				_loopCount,
+				_pod
+			]
+		] execVM PT_DEBUG_SQF;
+		
 		_loopCount = _loopCount + 1;
-	};
+	};//TODO: Change from loop to matching values like the post decel check does
 	
 	//LOOP COUNT DOES NOT SEEM TO WORK?
 	//If we're stuck at a height above 10 aka on a building, then we can break out of a loop and still 'deploy'
@@ -44,7 +51,7 @@ waitUntil {
 playSound3D [PT_POD_DECEL_NOISE, _pod, false, getPosATL _pod, 5, 1];//Sound previously played after setting the decell velocity
 		
 //Activate deceleration thrusters
-diag_log ["PodManualDetection - Decellerating: ", _pod];
+[format["PodManualDetection - Decellerating %1", _pod]] execVM PT_DEBUG_SQF;//TODO Validate if this works
 _pod setVelocity [0, 0, -0.05];//[_Vx, _Vy, -0.05]; resulted in a lot of sliding
 
 //Set the prevHeight up to use for looping
@@ -58,16 +65,15 @@ waitUntil {
 
 	if (_Hz != _prevHeight) then {
 		_prevHeight = _Hz;
-		diag_log format["PodManualDetection -  Loop %1 - Height Check %2 For Spawn %3", _loopCount, _Hz, _pod];
+		[format["PodManualDetection -  Loop %1 - Height Check %2 For Spawn %3", _loopCount, _Hz, _pod]] execVM PT_DEBUG_SQF;
 	} else {
 		_stuck = true;
-		diag_log ["PodManualDetection - Same height, we're stuck ", _Hz, _pod];
+		[format["PodManualDetection - Same height %1 pod %2 stuck ", _Hz, _pod]] execVM PT_DEBUG_SQF;
 	};
 
 	(_Hz < PT_MANUAL_CHECK_STOP_HEIGHT) || (_stuck isEqualTo true);
 };//Could look at the pod being on the ground for a certain amount of time
 
-diag_log "PodManualDetection - Calling poopTroopSpawn";
-systemChat "PodManualDetection - Calling poopTroopSpawn";
+["PodManualDetection - Calling poopTroopSpawn"] execVM PT_DEBUG_SQF;
 
 [_pod, _poopGroup, _vehicle] execVM "pooperTroopers\scripts\poopTroopSpawn.sqf";
