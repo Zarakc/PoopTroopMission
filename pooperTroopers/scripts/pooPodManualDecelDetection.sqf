@@ -37,13 +37,14 @@ waitUntil {
 playSound3D [PT_POD_DECEL_NOISE, _pod, false, getPosATL _pod, 2/*Volume WAS 5*/, 1];//Sound previously played after setting the decell velocity
 		
 //Activate deceleration thrusters
-[format["PodManualDetection - Pod %1 Decellerating", _pod]] execVM PT_DEBUG_SQF;//TODO Validate if this works
+[format["PodManualDetection - Pod %1 Decellerating", _pod]] execVM PT_DEBUG_SQF;
 _pod setVelocity [0, 0, -0.05];//[_Vx, _Vy, -0.05]; resulted in a lot of sliding
 
 //Set the prevHeight up to use for looping
 //Not resetting the loopCount since if it's already 4, we've been stuck and need to break out
 _prevHeight = PT_MANUAL_CHECK_DECEL_HEIGHT;
 _stuck = false;
+_loopIteration = 0;
 
 //Wait until we've touched ground
 waitUntil {
@@ -51,11 +52,14 @@ waitUntil {
 
 	if (_Hz != _prevHeight) then {
 		_prevHeight = _Hz;
-		[format["PodManualDetection - Pod %1 - Spawn Height Check %2", _pod, _Hz]] execVM PT_DEBUG_SQF;
+		[format["PodManualDetection - Pod %1 - Spawn Height Check %2 - Loop Iteration %3", _pod, _Hz, _loopIteration]] execVM PT_DEBUG_SQF;
 	} else {//TODO: Verify this is handled correctly. Seems to trigger immediately based on logs
 		_stuck = true;
-		[format["PodManualDetection - Pod %1 - Same height %2  - Stuck ", _Hz, _pod]] execVM PT_DEBUG_SQF;
+		[format["PodManualDetection - Pod %1 - Same height %2 - Loop Iteration %3 - Stuck ", _pod, _Hz, _loopIteration]] execVM PT_DEBUG_SQF;
 	};
+
+	_loopIteration = _loopIteration + 1;
+	sleep .1;
 
 	(_Hz < PT_MANUAL_CHECK_STOP_HEIGHT) || (_stuck isEqualTo true);
 };//Could look at the pod being on the ground for a certain amount of time
