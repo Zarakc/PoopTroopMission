@@ -1,11 +1,11 @@
-#include "..\poopTroopConstants.sqf";
+#include "..\..\poopTroopConstants.sqf";
 
 params ["_pod"];
 
 _podImpactEventHandler = {
 	params ["_pod", "_impactedObject", "_unused1", "_unused2", "_reactForce", "_worldPos"];
 
-	["ImpactEventHandler - Called podImpactEventHandler"] execVM PT_DEBUG_SQF;
+	[format["ImpactEventHandler - Pod %1 - Called", _pod]] execVM PT_DEBUG_SQF;
 	
 	//Avoid calling the event again if we bounce around due to latency and velocity
 	_pod removeEventHandler [_thisEvent, _thisEventHandler];

@@ -1,4 +1,4 @@
-#include "..\poopTroopConstants.sqf";
+#include "..\..\poopTroopConstants.sqf";
 
 params ["_pod"];
 

@@ -1,4 +1,4 @@
-#include "..\poopTroopConstants.sqf";
+#include "..\..\poopTroopConstants.sqf";
 
 params ["_pod", "_assignedUnitGroup", "_launchVehicle"];
 
@@ -6,6 +6,7 @@ params ["_pod", "_assignedUnitGroup", "_launchVehicle"];
 
 //TODO: See how much this is needed or if impact handler could be sufficient
 _pod setVelocity PT_POD_DECEL_VELOCITY;
+playSound3D [PT_POD_DECEL_NOISE, _pod, false, getPosATL _pod, PT_POD_DECEL_VOL, 1/*Pitch*/];//, 50/*Distance*/];
 
 //Add the impact handling trigger to the pod
 [_pod] execVM PT_POD_IMPACT_HANDLER;

@@ -33,16 +33,8 @@ eventHandlerVehicle = {
 			deleteVehicle _projectile;
 			_pod setVelocity _projectileVelocity;
 
-			if(PT_IMPACT_EVENT_FOR_PODS == true) then {
-				//Use the impact detection event for the unit spawning/opening
-				["Calling pooPodImpactEventHandler"] execVM PT_DEBUG_SQF;
-				[_pod, _poopGroup, _vehicle] execVM "pooperTroopers\scripts\pooPodImpactEventHandler.sqf";
-
-			} else {
-				//Use the height waitUntils
-				["Calling pooPodManualDecelDetection"] execVM PT_DEBUG_SQF;
-				[_pod, _poopGroup, _vehicle] execVM "pooperTroopers\scripts\pooPodManualDecelDetection.sqf";
-			};
+			["InitialPodSequence - Calling podEnrouteSequence"] execVM PT_DEBUG_SQF;
+			[_pod, _poopGroup, _vehicle] execVM PT_POD_SEQUENCE_START;
 		};
 		
 	}) forEach _pooBoys;

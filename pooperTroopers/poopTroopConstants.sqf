@@ -5,10 +5,11 @@
 #define PT_IMPACT_EVENT_FOR_PODS false
 
 //Pod Scripts
-#define PT_POD_LANDING_SEQUENCE "pooperTroopers\scripts\preparePodLandingSequence.sqf"
-#define PT_POD_IMPACT_HANDLER "pooperTroopers\scripts\podImpactEventHandler.sqf"
-#define PT_POD_IMPACT_FOLLOWUP "pooperTroopers\scripts\postImpactTrigger.sqf"
-#define PT_POD_TROOPER_SPAWN "pooperTroopers\scripts\poopTroopSpawn.sqf"
+#define PT_POD_SEQUENCE_START "pooperTroopers\scripts\pod\podEnrouteSequence.sqf"
+#define PT_POD_LANDING_SEQUENCE "pooperTroopers\scripts\pod\preparePodLandingSequence.sqf"
+#define PT_POD_IMPACT_HANDLER "pooperTroopers\scripts\pod\podImpactEventHandler.sqf"
+#define PT_POD_IMPACT_FOLLOWUP "pooperTroopers\scripts\pod\postImpactTrigger.sqf"
+#define PT_POD_TROOPER_SPAWN "pooperTroopers\scripts\pod\podTrooperSpawn.sqf"
 
 //Pod launching constants
 #define PT_COORDINATE_VARIANCE 20
@@ -30,6 +31,8 @@
 //Armored Special Forces Rifleman Late USSR - "UK3CB_CW_SOV_O_LATE_SF_RIF_2"
 #define PT_UNIT_TYPE "UK3CB_CW_SOV_O_EARLY_RIF_2"
 
+//a3\sounds_f_jets\vehicles\air\plane_fighter_01\b_plane_fighter_01_engine_back.wss
+//"rhsusf\addons\rhsusf_a2port_air\data\sounds\ejection_sound.wss"
 #define PT_POD_DECEL_NOISE "rhsusf\addons\rhsusf_a2port_air\data\sounds\ejection_sound.wss"
-#define PT_POD_DECEL_NOISE_VOL 2
+#define PT_POD_DECEL_VOL 2
 #define PT_POD_IMPACT_NOISE "A3\Sounds_F\sfx\missions\vehicle_collision.wss"
