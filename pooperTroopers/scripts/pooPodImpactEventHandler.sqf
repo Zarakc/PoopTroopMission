@@ -15,13 +15,6 @@ _podImpactEventHandler = {
 	_pooPod setVelocity [0, 0, 0];
 	playSound3D [PT_POD_IMPACT_NOISE, _pooPod, false, getPosATL _pooPod, 2/*Volume*/, 1/*Pitch*/];//, 50/*Distance*/];
 
-	//Unit Creation
-	diag_log "Debug - ImpactEventHandler - Spawning Unit Code Start";
-
-	//Rifleman Early USSR - "UK3CB_CW_SOV_O_EARLY_RIF_2"
-	//Armored Rifleman Late USSR - "UK3CB_CW_SOV_O_LATE_RIF_2"
-	//Armored Special Forces Rifleman Late USSR - "UK3CB_CW_SOV_O_LATE_SF_RIF_2"
-
 	diag_log "ImpactEventHandler - Calling poopTroopSpawn";
 	systemChat "ImpactEventHandler - Calling poopTroopSpawn";
 
@@ -35,9 +28,6 @@ _podImpactEventHandler = {
 
 	[_pooPod, _podData select 0, _podData select 1] execVM "pooperTroopers\scripts\poopTroopSpawn.sqf";
 };
-
-//Setting the variable to the object since they can't carry over into the eventHandler
-_pooPod setVariable ["data", [_poopGroup, _launchVehicle]];
 
 diag_log "ImpactEventHandler - Adding pooPodImpactEventHandler";
 systemChat "ImpactEventHandler - Adding pooPodImpactEventHandler";
