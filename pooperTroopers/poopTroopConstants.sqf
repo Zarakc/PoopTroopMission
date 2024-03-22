@@ -6,6 +6,8 @@
 
 //Pod Scripts
 #define PT_POD_LANDING_SEQUENCE "pooperTroopers\scripts\preparePodLandingSequence.sqf"
+#define PT_POD_IMPACT_HANDLER "pooperTroopers\scripts\podImpactEventHandler.sqf"
+#define PT_POD_IMPACT_FOLLOWUP "pooperTroopers\scripts\postImpactTrigger.sqf"
 #define PT_POD_TROOPER_SPAWN "pooperTroopers\scripts\poopTroopSpawn.sqf"
 
 //Pod launching constants
