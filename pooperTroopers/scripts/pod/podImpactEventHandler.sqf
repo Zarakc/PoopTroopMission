@@ -12,7 +12,7 @@ _podImpactEventHandler = {
 
 	//Stop the pod and play collision noise
 	_pod setVelocity [0, 0, 0];
-	playSound3D [PT_POD_IMPACT_NOISE, _pod, false, getPosATL _pod, 2/*Volume*/, 1/*Pitch*/];//, 50/*Distance*/];
+	playSound3D [PT_POD_IMPACT_NOISE, _pod, false, getPosATL _pod, PT_POD_IMPACT_VOL, 1/*Pitch*/];//, 50/*Distance*/];
 
 	
 	[format["ImpactEventHandler - Pod %1 - Opening", _pod]] execVM PT_DEBUG_SQF;

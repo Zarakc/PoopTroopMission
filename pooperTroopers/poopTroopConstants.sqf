@@ -31,8 +31,26 @@
 //Armored Special Forces Rifleman Late USSR - "UK3CB_CW_SOV_O_LATE_SF_RIF_2"
 #define PT_UNIT_TYPE "UK3CB_CW_SOV_O_EARLY_RIF_2"
 
-//a3\sounds_f_jets\vehicles\air\plane_fighter_01\b_plane_fighter_01_engine_back.wss
-//"rhsusf\addons\rhsusf_a2port_air\data\sounds\ejection_sound.wss"
+
 #define PT_POD_DECEL_NOISE "rhsusf\addons\rhsusf_a2port_air\data\sounds\ejection_sound.wss"
 #define PT_POD_DECEL_VOL 2
-#define PT_POD_IMPACT_NOISE "A3\Sounds_F\sfx\missions\vehicle_collision.wss"
+#define PT_POD_IMPACT_NOISE "a3\sounds_f\vehicles2\armor\shared\collisions\vehicle_armor_collision_building_01.wss"
+#define PT_POD_IMPACT_VOL 3
+
+/*
+"a3\sounds_f\vehicles2\armor\shared\collisions\vehicle_armor_general_collision_01.wss" nice
+"a3\sounds_f\vehicles2\armor\shared\collisions\vehicle_armor_collision_building_01.wss" Chunky noise, pretty solid
+"a3\sounds_f\vehicles2\armor\shared\collisions\vehicle_armor_collision_armor_01.wss"
+"a3\sounds_f\vehicles2\armor\shared\collisions\vehicle_armor_collision_light_armor_01.wss"
+"a3\sounds_f\vehicles2\armor\shared\collisions\vehicle_armor_collision_light_wood_01.wss"
+"a3\sounds_f\vehicles2\armor\shared\collisions\vehicle_armor_collision_light_bush_01.wss"
+"a3\sounds_f\air\heli_attack_02\mixxx_door.wss"
+"a3\sounds_f\air\heli_light_01\heli_light_01_door.wss"
+"a3\sounds_f\structures\doors\genericdoors\squeak1.wss"
+"a3\sounds_f\structures\doors\genericdoors\squeak2.wss"
+"a3\sounds_f\structures\doors\genericdoors\squeak3.wss"
+"a3\sounds_f\structures\doors\genericdoors\squeak4.wss"
+*/
+
+//"rhsusf\addons\rhsusf_a2port_air\data\sounds\ejection_sound.wss"
+//"a3\sounds_f\environment\ambient\battlefield\battlefield_explosions1.wss"
