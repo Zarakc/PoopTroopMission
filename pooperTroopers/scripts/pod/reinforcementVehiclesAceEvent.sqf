@@ -1,4 +1,4 @@
-#include "poopTroopConstants.sqf";
+#include "..\..\poopTroopConstants.sqf";
 
 eventHandlerVehicle = {
 	params ["_vehicle", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];

@@ -1,10 +1,11 @@
 #define PT_LOCAL_SCRIPTS true
 #define PT_DEBUG_MODE "LOCAL"//SERVER,LOCAL
-#define PT_DEBUG_HEADER "[PoopTroop] - "
+#define PT_DEBUG_HEADER "[PT - Messy Evacuation] - "
 #define PT_DEBUG_SQF "pooperTroopers\scripts\helpers\debugMessages.sqf"
 #define PT_IMPACT_EVENT_FOR_PODS false
 
 //Pod Scripts
+#define PT_POD_REINFORCEMENTS_ACE_EVENT "pooperTroopers\scripts\pod\reinforcementVehiclesAceEvent.sqf"
 #define PT_POD_SEQUENCE_START "pooperTroopers\scripts\pod\podEnrouteSequence.sqf"
 #define PT_POD_LANDING_SEQUENCE "pooperTroopers\scripts\pod\preparePodLandingSequence.sqf"
 #define PT_POD_IMPACT_HANDLER "pooperTroopers\scripts\pod\podImpactEventHandler.sqf"

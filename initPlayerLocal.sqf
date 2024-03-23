@@ -7,5 +7,5 @@ params ["_player", "_didJIP"];
 //BDRM SETUP END
 
 if(PT_LOCAL_SCRIPTS == true) then {
-	execVM "pooperTroopers\poopTroopAceEvent.sqf";
+	execVM PT_POD_REINFORCEMENTS_ACE_EVENT;
 };
