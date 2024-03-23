@@ -6,5 +6,5 @@ execVM "bdrm\scripts\setup\setupServer.sqf";
 
 if(PT_LOCAL_SCRIPTS == false) then {
 	["========= Server Init =========="] execVM PT_DEBUG_SQF;
-	execVM PT_POD_REINFORCEMENTS_ACE_EVENT
+	execVM PT_INITIALIZE_MISSION
 };

@@ -1,4 +1,5 @@
 #include "..\..\messyEvacuationConstants.sqf";
+#include "podConstants.sqf";
 
 eventHandlerVehicle = {
 	params ["_vehicle", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];

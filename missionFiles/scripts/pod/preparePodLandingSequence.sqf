@@ -1,4 +1,5 @@
 #include "..\..\messyEvacuationConstants.sqf";
+#include "podConstants.sqf";
 
 params ["_pod", "_assignedUnitGroup", "_launchVehicle"];
 
