@@ -14,3 +14,9 @@ playSound3D ["A3\Sounds_F\sfx\missions\vehicle_collision.wss", testGuy, false, g
 
 ca\data_baf\Music\crash.ogg
 rhsusf\addons\rhsusf_a2port_air\data\sounds\ejection_sound.wss
+
+getMarkerPos "dump1" inRangeOfArtillery [[arty4], "rhs_mag_3of56_35"];
+
+getAllHitPointsDamage testHelo;
+"main_rotor_hit, tail_rotor_hit, hitfuel, hitengine1, hitengine2, hithrotor, hitvrotor"; 
+testHelo setHitPointDamage ["hitvrotor", 0.8];
