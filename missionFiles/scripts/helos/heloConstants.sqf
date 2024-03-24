@@ -5,7 +5,7 @@
 
 #define PT_HELO_POS_1 [11830.197, 12572.271, 0]
 #define PT_HELO_POS_2 [11871.171, 12554.148, 0]
-#define PT_HELI_ROT [0, 0, 21]
+#define PT_HELO_ROT 21
 
 #define PT_HELO_INIT_DAMAGE "missionFiles\scripts\helos\initializeDamage.sqf"
 #define PT_HELO_DMG_PARTS ["hithrotor", "hitvrotor"]
