@@ -1,0 +1,46 @@
+#include "..\..\messyEvacuationConstants.sqf";
+#include "truckConstants.sqf";
+
+params ["_truck"];
+
+[format["Truck %1 - Damage Init", _truck]] execVM PT_DEBUG_SQF;
+
+//See how many wheels we can get away with damaging before it needs to be repaired to move
+_wheels = [
+			"hitlfwheel", "hitlf2wheel", "hitlmwheel",
+			"hitrfwheel", "hitrf2wheel", "hitrmwheel"
+		];
+
+_numWheelsToDamage = random 3;
+
+[format["Truck %1 - Damaging %2 wheels", _truck, _numWheelsToDamage]] execVM PT_DEBUG_SQF;
+
+while { _numWheelsToDamage > 0} do {
+	_wheel = selectRandom _wheels;
+
+	//Remove our selected wheel so we don't pick the same
+	//If there's an easy way to do it, errors looped about the below
+	//_wheels = _wheels - [_wheel];
+
+	[format["Truck %1 - Damaging %2 to %3", _truck, _wheel, 1]] execVM PT_DEBUG_SQF;
+
+	_truck setHitPointDamage [_wheel, 1];
+
+	//This line is important if we want to play the game and not "Make log get big and also not load into the game"
+	_numWheelsToDamage = _numWheelsToDamage -1;
+};
+
+//Possibly defuel only if a non-fuel truck
+if(typeOf _truck != PT_FUEL_VEHICLE_TYPE) then {
+
+} else {
+	_test = getFuelCargo _truck;//Something about fuelCargo is breaking the debug
+	[_test] execVM PT_DEBUG_SQF;
+
+	[format["Fuel Truck %1 - Fuel reserves %2", _truck, _test]] execVM PT_DEBUG_SQF;
+	_truck setFuelCargo 0;
+
+	_test = getFuelCargo _truck;//debug reports 0, Ace interact reports the full 3k
+	[format["Fuel Truck %1 - Removed fuel", _truck]] execVM PT_DEBUG_SQF;
+	[format["Fuel Truck %1 - Fuel reserves %2", _truck, _test]] execVM PT_DEBUG_SQF;
+};
