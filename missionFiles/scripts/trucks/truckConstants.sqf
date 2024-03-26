@@ -3,12 +3,20 @@
 //OreoNacho - _Kraz255_Fuel
 //Ural_Fuel
 
+#define PT_
+
 //Fuel tanks location
 #define PT_FUEL_POS_1 [11946.582, 12481.896, 0]
 #define PT_FUEL_ROT_1 21
 
-//Warhouse location
+//Warehouse location
 #define PT_FUEL_POS_2 [12053.16, 12449.794, 0]
 #define PT_FUEL_ROT_2 111
+
+//Eastern Garage Slot #2
+#define PT_TRUCK_E_GARAGE_POS [12456.086, 12545.881, 0.440]
+#define PT_TRUCK_E_GARAGE_ROT 188
+
+//Western Garage Slot #?
 
 #define PT_TRUCK_INIT_DAMAGE "missionFiles\scripts\trucks\damageTruck.sqf"
