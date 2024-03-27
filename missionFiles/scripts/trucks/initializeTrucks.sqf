@@ -8,7 +8,7 @@ _spawnLocations = +PT_TRUCK_LOCATIONS;
 [format["Truck Spawns %1", _spawnLocations]] execVM PT_DEBUG_SQF;
 
 //WHen we spawn a truck in one of the selected bays, remove that bay from the roster
-{
+{//TODO: Possibly spawn multiple trucks - player count based?
 	_truckInfo = PT_TRUCK_SPAWN_DETAILS select _forEachIndex;
 
 	_truckType = _truckInfo select 0;
