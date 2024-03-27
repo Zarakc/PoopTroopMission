@@ -1,22 +1,25 @@
 #include "..\..\messyEvacuationConstants.sqf";
 #include "truckConstants.sqf";
 
-params ["_truck"];
+params ["_truck", "_truckWheels"];
 
 [format["Truck %1 - Damage Init", _truck]] execVM PT_DEBUG_SQF;
 
 //See how many wheels we can get away with damaging before it needs to be repaired to move
-_wheels = [
-			"hitlfwheel", "hitlf2wheel", "hitlmwheel",
-			"hitrfwheel", "hitrf2wheel", "hitrmwheel"
-		];
+// _wheels = [
+// 			"hitlfwheel", "hitlf2wheel", "hitlmwheel",
+// 			"hitrfwheel", "hitrf2wheel", "hitrmwheel"
+// 		];
 
 _numWheelsToDamage = random 3;
 
+//TODO: Have truck types have a wheel array so WHEEL damage them correctly
+
+[format["Truck %1 - Wheels %2", _truck, _truckWheels]] execVM PT_DEBUG_SQF;
 [format["Truck %1 - Damaging %2 wheels", _truck, _numWheelsToDamage]] execVM PT_DEBUG_SQF;
 
 while { _numWheelsToDamage > 0} do {
-	_wheel = selectRandom _wheels;
+	_wheel = selectRandom _truckWheels;
 
 	//Remove our selected wheel so we don't pick the same
 	//If there's an easy way to do it, errors looped about the below
