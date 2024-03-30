@@ -11,6 +11,7 @@ params ["_truck", "_truckWheels"];
 // 			"hitrfwheel", "hitrf2wheel", "hitrmwheel"
 // 		];
 
+//TODO: Adjust random per vehicle - repair might have 3/4 wheels down - which is ass.
 _numWheelsToDamage = random 3;
 
 //TODO: Have truck types have a wheel array so WHEEL damage them correctly

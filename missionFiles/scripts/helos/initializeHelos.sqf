@@ -1,11 +1,9 @@
 #include "..\..\messyEvacuationConstants.sqf";
 #include "heloConstants.sqf";
 
-private _players = allPlayers - entities "HeadlessClient_F";
+params ["_playerCount"];
 
-_playerCount = count _players;//[params] call fnc_name; PT_PLAYER_COUNT_SQF;
-[format["Player count %1", _playerCount]] execVM PT_DEBUG_SQF;
-
+[format["Helo - Player count %1", _playerCount]] execVM PT_DEBUG_SQF;
 
 _heloSeatCount = [PT_TRANSIT_HELO_TYPE, true] call BIS_fnc_crewCount;
 [format["Helo's seat %1", _heloSeatCount]] execVM PT_DEBUG_SQF;

@@ -3,6 +3,9 @@
 #define PT_DEBUG_HEADER "[PT - Messy Evacuation] - "
 #define PT_DEBUG_SQF "missionFiles\scripts\helpers\debugMessages.sqf"
 
+#define PT_PLAYER_COUNT "missionFiles\scripts\helpers\playerCount.sqf"
+#define PT_PLAYER_COUNT_GLOBAL_VAR "playerCount"
+
 #define PT_PLAYER_COUNT_SQF "missionFiles\scripts\helpers\playerCount.sqf"
 
 //Set up scripts

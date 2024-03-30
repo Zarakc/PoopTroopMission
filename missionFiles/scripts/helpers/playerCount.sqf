@@ -1,6 +1,9 @@
-_players = allPlayers - entities "HeadlessClient_F";
+#include "..\..\messyEvacuationConstants.sqf";
 
-_playerCount = count _players;
+{
+	_playerCount = missionNamespace getVariable "playerCount";
 
-//Return
-_playerCount;
+	[format["Player Count - Retrieved player count - %1", _playerCount]] execVM PT_DEBUG_SQF;
+
+	_playerCount;
+};
