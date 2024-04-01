@@ -12,9 +12,12 @@ params ["_truck", "_truckWheels"];
 // 		];
 
 //TODO: Adjust random per vehicle - repair might have 3/4 wheels down - which is ass.
-_numWheelsToDamage = random 3;
 
-//TODO: Have truck types have a wheel array so WHEEL damage them correctly
+_numWheels = count _truckWheels;
+
+[format["Truck %1 - Half Wheels", (_numWheels / 2)]] execVM PT_DEBUG_SQF;
+
+_numWheelsToDamage = ceil (random (_numWheels / 2));
 
 [format["Truck %1 - Wheels %2", _truck, _truckWheels]] execVM PT_DEBUG_SQF;
 [format["Truck %1 - Damaging %2 wheels", _truck, _numWheelsToDamage]] execVM PT_DEBUG_SQF;
