@@ -15,7 +15,7 @@ params ["_truck", "_truckWheels"];
 
 _numWheels = count _truckWheels;
 
-[format["Truck %1 - Half Wheels", (_numWheels / 2)]] execVM PT_DEBUG_SQF;
+[format["Truck %1 - Half Wheels %2", _truck, (_numWheels / 2)]] execVM PT_DEBUG_SQF;
 
 _numWheelsToDamage = ceil (random (_numWheels / 2));
 
