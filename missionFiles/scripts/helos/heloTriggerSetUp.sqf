@@ -1,6 +1,7 @@
 #include "..\..\messyEvacuationConstants.sqf";
 #include "heloConstants.sqf";
 
+//Called from initializeHelos
 params ["_helo"];
 
 [format["Helo %1 - Creating Trigger", _helo]] execVM PT_DEBUG_SQF;
@@ -19,12 +20,26 @@ _trigger setTriggerStatements [
 	"[""Helo Loss"", false, 2] call BIS_fnc_endMission",
 	"[""Helo Loss"", false, 2] call BIS_fnc_endMission"
 ];
+
+//TODO: Check the mission variable to hold the helo triggers
+_heloEscapeTriggers = missionNamespace getVariable PT_HELO_TRIGGERS_VARNAME;
+
+if(isNil "_heloEscapeTriggers") then {
+
+	[format["Helo %1 - Trigger Setup - HeloEscapeTriggers nil, creating entry", _helo]] execVM PT_DEBUG_SQF;
+	
+	_heloEscapeTriggers = [];
+};
+
+_heloEscapeTriggers append [_trigger];
+
 //TODO: Do a print out of the placed trigger in the editor and compare with what is here
 
 [format["Helo %1 - Trigger Vehicle %2", _helo, triggerAttachedVehicle _trigger]] execVM PT_DEBUG_SQF;
 
 [format["Helo %1 - Trigger %2", _helo, _trigger]] execVM PT_DEBUG_SQF;
 
+MANUAL_TRIGGER_DETAILS_fnc_print = {
 //Grab the manually made trigger here and output its values
 _manualTrigger = missionNamespace getVariable "testHeloTrigger";
 _triggerType = triggerType _manualTrigger;
@@ -52,3 +67,7 @@ _isRepeating = _triggerActivation select 2;
 [format["Helo %1 - Manual Trigger Activated Type %2", _helo, _activatedType]] execVM PT_DEBUG_SQF;
 [format["Helo %1 - Manual Trigger Is Repeating %2", _helo, _isRepeating]] execVM PT_DEBUG_SQF;
 //End the grabbing of the manual trigger values
+};
+
+call MANUAL_TRIGGER_DETAILS_fnc_print;
+

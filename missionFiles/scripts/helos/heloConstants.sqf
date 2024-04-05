@@ -1,6 +1,12 @@
 #define PT_TRANSIT_HELO_TYPE "UK3CB_CW_SOV_O_EARLY_Mi8AMT"
 #define PT_HELO_SEATS 18
 
+//Used to store the generated helo triggers for when each spawned helo
+// leaves the airfield area.
+#define PT_HELO_TRIGGERS_VARNAME "heloEscapeTriggers"
+
+//TODO: Constants on position and size for helo triggers leaving the airfield
+
 #define PT_HELO_SPAWN_1 [PT_HELO_POS_1, PT_HELO_ROT_1]
 #define PT_HELO_POS_1 [11830.197, 12572.271, 0]
 #define PT_HELO_ROT_1 21
