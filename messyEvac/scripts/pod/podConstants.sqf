@@ -1,10 +1,10 @@
 //Pod Scripts
-#define PT_POD_REINFORCEMENTS_ACE_EVENT "missionFiles\scripts\pod\reinforcementVehiclesAceEvent.sqf"
-#define PT_POD_SEQUENCE_START "missionFiles\scripts\pod\podEnrouteSequence.sqf"
-#define PT_POD_LANDING_SEQUENCE "missionFiles\scripts\pod\preparePodLandingSequence.sqf"
-#define PT_POD_IMPACT_HANDLER "missionFiles\scripts\pod\podImpactEventHandler.sqf"
-#define PT_POD_IMPACT_FOLLOWUP "missionFiles\scripts\pod\postImpactTrigger.sqf"
-#define PT_POD_TROOPER_SPAWN "missionFiles\scripts\pod\podTrooperSpawn.sqf"
+#define PT_POD_REINFORCEMENTS_ACE_EVENT "messyEvac\scripts\pod\reinforcementVehiclesAceEvent.sqf"
+#define PT_POD_SEQUENCE_START "messyEvac\scripts\pod\podEnrouteSequence.sqf"
+#define PT_POD_LANDING_SEQUENCE "messyEvac\scripts\pod\preparePodLandingSequence.sqf"
+#define PT_POD_IMPACT_HANDLER "messyEvac\scripts\pod\podImpactEventHandler.sqf"
+#define PT_POD_IMPACT_FOLLOWUP "messyEvac\scripts\pod\postImpactTrigger.sqf"
+#define PT_POD_TROOPER_SPAWN "messyEvac\scripts\pod\podTrooperSpawn.sqf"
 
 //Pod launching constants
 #define PT_COORDINATE_VARIANCE 20

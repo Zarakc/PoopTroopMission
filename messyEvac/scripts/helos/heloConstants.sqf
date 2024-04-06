@@ -21,14 +21,14 @@
 
 #define PT_HELO_SPAWN_POINTS [PT_HELO_SPAWN_1, PT_HELO_SPAWN_2, PT_HELO_SPAWN_3]
 
-#define PT_HELO_CREATE_TRIGGER "missionFIles\scripts\helos\heloTriggerSetUp.sqf"
+#define PT_HELO_CREATE_TRIGGER "messyEvac\scripts\helos\heloTriggerSetUp.sqf"
 
 //Different variations of dmg
 //Red but still working rotors
 //Fully broken roter
 //No fuel
 //Busted engine, etc
-#define PT_HELO_INIT_DAMAGE "missionFiles\scripts\helos\damageHelo.sqf"
+#define PT_HELO_INIT_DAMAGE "messyEvac\scripts\helos\damageHelo.sqf"
 #define PT_HELO_DMG_PARTS ["hithrotor", "hitvrotor"]
 #define PT_HELO_PARTIAL_DMG 0.8
 #define PT_HELO_DMG 0.9

@@ -36,4 +36,4 @@
 //
 
 
-#define PT_TRUCK_INIT_DAMAGE "missionFiles\scripts\trucks\damageTruck.sqf"
+#define PT_TRUCK_INIT_DAMAGE "messyEvac\scripts\trucks\damageTruck.sqf"

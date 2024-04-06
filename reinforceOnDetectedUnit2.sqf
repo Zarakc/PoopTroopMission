@@ -1,5 +1,5 @@
-#include "missionFiles\messyEvacuationConstants.sqf";
-#include "missionFIles\scripts\pod\podConstants.sqf";
+#include "messyEvac\messyEvacuationConstants.sqf";
+#include "messyEvac\scripts\pod\podConstants.sqf";
 
 //Given a list of detected units in a zone, send reinforcements there with spawned artillery units
 //UK3CB_CW_SOV_O_LATE_2S1
