@@ -1,14 +1,18 @@
 #include "..\..\messyEvacuationConstants.sqf";
 #include "heloConstants.sqf";
 
+//Create a trigger for a spawned helo to trigger when it leaves a certain radius of its spawn
+//Each helo trigger is added to a missionNamespace variable used to track each helo trigger
+
 //Called from initializeHelos
-params ["_helo"];
+params ["_helo", "_i"];
 
 [format["Helo %1 - Creating Trigger", _helo]] execVM PT_DEBUG_SQF;
 
 [format["Helo %1 - Trigger POS: %2", _helo, getPos _helo]] execVM PT_DEBUG_SQF;
 
 _trigger = createTrigger ["EmptyDetector", getPos _helo];//11805.763, 12607.356, 0
+
 //NOT PRESENT so when the helo has left the area, it triggers
 _trigger setTriggerActivation ["VEHICLE", "NOT PRESENT", false];//Matches manual trigger
 _trigger setTriggerText "Helo Trigger";
@@ -33,6 +37,9 @@ if(isNil "_heloEscapeTriggers") then {
 
 _heloEscapeTriggers append [_trigger];
 
+//Actually setting the variable so it can be grabbed is nice
+missionNamespace setVariable [PT_HELO_TRIGGERS_VARNAME, _heloEscapeTriggers];
+
 //TODO: Do a print out of the placed trigger in the editor and compare with what is here
 
 [format["Helo %1 - Trigger Vehicle %2", _helo, triggerAttachedVehicle _trigger]] execVM PT_DEBUG_SQF;
@@ -41,7 +48,7 @@ _heloEscapeTriggers append [_trigger];
 
 MANUAL_TRIGGER_DETAILS_fnc_print = {
 //Grab the manually made trigger here and output its values
-_manualTrigger = missionNamespace getVariable "testHeloTrigger";
+_manualTrigger = missionNamespace getVariable "heloAndTransitTrigger";//"testHeloTrigger";
 _triggerType = triggerType _manualTrigger;
 _triggerArea = triggerArea _manualTrigger;
 
@@ -69,5 +76,5 @@ _isRepeating = _triggerActivation select 2;
 //End the grabbing of the manual trigger values
 };
 
-//call MANUAL_TRIGGER_DETAILS_fnc_print;
+call MANUAL_TRIGGER_DETAILS_fnc_print;
 

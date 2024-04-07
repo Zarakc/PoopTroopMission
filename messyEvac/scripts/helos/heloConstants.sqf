@@ -21,7 +21,7 @@
 
 #define PT_HELO_SPAWN_POINTS [PT_HELO_SPAWN_1, PT_HELO_SPAWN_2, PT_HELO_SPAWN_3]
 
-#define PT_HELO_CREATE_TRIGGER "messyEvac\scripts\helos\heloTriggerSetUp.sqf"
+#define PT_HELO_CREATE_TRIGGER "messyEvac\scripts\helos\fn_heloTriggerSetUp.sqf"
 
 //Different variations of dmg
 //Red but still working rotors
