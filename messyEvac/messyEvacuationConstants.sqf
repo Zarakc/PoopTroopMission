@@ -1,4 +1,4 @@
-#define PT_LOCAL_SCRIPTS true
+#define PT_LOCAL_SCRIPTS false
 #define PT_DEBUG_MODE "LOCAL"//SERVER,LOCAL
 #define PT_DEBUG_HEADER "[PT - Messy Evacuation] - "
 #define PT_DEBUG_SQF "messyEvac\scripts\helpers\debugMessages.sqf"

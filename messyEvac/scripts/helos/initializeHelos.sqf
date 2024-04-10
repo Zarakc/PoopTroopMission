@@ -30,8 +30,6 @@ for [{private _i = 0}, {_i < _desiredHeloCount}, {_i = _i + 1}] do {
 	_pos = _spawnPoint select 0;
 	_helo = PT_TRANSIT_HELO_TYPE createVehicle _pos;
 
-	//TODO: Add a trigger for the helo to associate it with victory/loss conditions?
-
 	_rot = _spawnPoint select 1;
 	_helo setDir _rot;
 
@@ -39,7 +37,8 @@ for [{private _i = 0}, {_i < _desiredHeloCount}, {_i = _i + 1}] do {
 	[_helo] execVM PT_HELO_INIT_DAMAGE;
 
 	[format["Helo %1 - Calling Trigger", _helo]] call messyEvac_fnc_debugLog;
-	[_helo, _i] call messyEvac_fnc_heloTriggerSetUp;//[_helo] execVM PT_HELO_CREATE_TRIGGER;
+	[_helo, _i] call messyEvac_fnc_heloTriggerSetUp;
 };
 
+//Once each helo and its trigger is created, make our single trigger to know if all helos left the A/O or are destroyed
 [] call messyEvac_fnc_heloCombineTriggers;

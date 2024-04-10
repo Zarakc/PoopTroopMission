@@ -8,6 +8,8 @@ _playerCount = count _players;
 
 missionNamespace setVariable ["playerCount", _playerCount];
 
+missionNamespace setVariable ["respawnEnabled", true];
+
 [_playerCount] execVM PT_HELO_SETUP;
 [_playerCount] execVM PT_TRUCK_SETUP;
 execVM PT_POD_REINFORCEMENTS_ACE_EVENT;

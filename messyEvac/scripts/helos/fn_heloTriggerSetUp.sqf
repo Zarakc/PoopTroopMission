@@ -10,18 +10,17 @@ params ["_helo", "_i"];
 [format["Helo %1 - Creating Trigger", _helo]] call messyEvac_fnc_debugLog;
 
 //Used for saving created trigger into missionNamespace
-//TODO: Make str a constant
-_varName = "heloLeaveTrigger" + str _i;
+_varName = PT_HELO_LEAVE_TRIGGER_NAME + str _i;
 
 [format["Helo %1 - Trigger POS: %2", _helo, getPos _helo]] call messyEvac_fnc_debugLog;
 
-_trigger = createTrigger ["EmptyDetector", getPos _helo];//11805.763, 12607.356, 0
+_trigger = createTrigger ["EmptyDetector", PT_HELO_AIRFIELD_ZONE_POS];
 
-//NOT PRESENT so when the helo has left the area, it triggers
-_trigger setTriggerActivation ["VEHICLE", "NOT PRESENT", false];//Matches manual trigger
-_trigger setTriggerText "Helo Trigger";
-_trigger setTriggerArea [5, 5, -1, false];
-_trigger triggerAttachVehicle [_helo];//Trigger Vehicle is null it seems
+//NOT PRESENT so when the helo has left the area/been destroyed, it triggers
+_trigger setTriggerActivation ["VEHICLE", "PRESENT", false];//TODO: NOT PRESENT //PRESENT IF WE WANT TO QUICKLY GET THIS TRIGGERED
+//_trigger setTriggerText "Helo Trigger";TODO: Test this removal, should be fine
+_trigger setTriggerArea PT_HELO_AIRFIELD_ZONE_AREA;
+_trigger triggerAttachVehicle [_helo];
 _trigger setEffectCondition "this";
 _trigger setTriggerStatements [
 	"this",//Return bool value - Manual one is returning 'this' as the condition
@@ -32,7 +31,7 @@ _trigger setTriggerStatements [
 missionNameSpace setVariable [_varName, _trigger];
 [format["Helo %1 - Trigger %2 Setup - Created var %3", _helo, _i, _varName]] call messyEvac_fnc_debugLog;
 
-//TODO: Check the mission variable to hold the helo triggers
+//Ensure our triggers mission var exist, or create it if it doesn't, and then append the newly created trigger to it
 _heloEscapeTriggers = missionNamespace getVariable PT_HELO_TRIGGERS_VARNAME;
 
 if(isNil "_heloEscapeTriggers") then {
@@ -47,15 +46,12 @@ _heloEscapeTriggers append [_trigger];
 //Actually setting the variable so it can be grabbed is nice
 missionNamespace setVariable [PT_HELO_TRIGGERS_VARNAME, _heloEscapeTriggers];
 
-//TODO: Do a print out of the placed trigger in the editor and compare with what is here
-
 [format["Helo %1 - Trigger Vehicle %2", _helo, triggerAttachedVehicle _trigger]] call messyEvac_fnc_debugLog;
 
-[format["Helo %1 - Trigger %2", _helo, _trigger]] call messyEvac_fnc_debugLog;
-
+//TODO: Remove this or make it a helper function if it feels like it would be useful in the future.
 MANUAL_TRIGGER_DETAILS_fnc_print = {
 //Grab the manually made trigger here and output its values
-_manualTrigger = missionNamespace getVariable "heloAndTransitTrigger";//"testHeloTrigger";
+_manualTrigger = missionNamespace getVariable "testHeloTrigger";//"heloAndTransitTrigger";
 _triggerType = triggerType _manualTrigger;
 _triggerArea = triggerArea _manualTrigger;
 
