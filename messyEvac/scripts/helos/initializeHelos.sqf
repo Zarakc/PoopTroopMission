@@ -33,6 +33,24 @@ for [{private _i = 0}, {_i < _desiredHeloCount}, {_i = _i + 1}] do {
 	_rot = _spawnPoint select 1;
 	_helo setDir _rot;
 
+	//Add the helo to a list of helos for the game
+	_helos = missionNamespace getVariable PT_HELOS;
+
+	if(isNil "_helos") then {
+
+		[format["Helo %1 - Trigger Setup - HeloEscapeTriggers nil, creating entry", _helo]] call messyEvac_fnc_debugLog;
+	
+		_helos = [];
+	};
+
+	_helos append [_helo];
+
+	//Update the mission variable with the helo
+	missionNamespace setVariable [PT_HELOS, _helos];
+
+	//Set up a trigger to be called if the helo is destroyed
+	_helo addEventHandler ["Killed", {_this call messyEvac_fnc_heloDestroyed}];
+
 	[format["Helo %1 - Init", _helo]] call messyEvac_fnc_debugLog;
 	[_helo] execVM PT_HELO_INIT_DAMAGE;
 

@@ -79,5 +79,5 @@ _isRepeating = _triggerActivation select 2;
 //End the grabbing of the manual trigger values
 };
 
-call MANUAL_TRIGGER_DETAILS_fnc_print;
+//call MANUAL_TRIGGER_DETAILS_fnc_print;
 

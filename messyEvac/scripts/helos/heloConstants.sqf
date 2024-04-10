@@ -1,5 +1,6 @@
 #define PT_TRANSIT_HELO_TYPE "UK3CB_CW_SOV_O_EARLY_Mi8AMT"
 #define PT_HELO_SEATS 18
+#define PT_HELOS "spawnedHelos"
 
 //Varname to use for saving individual helo triggers
 #define PT_HELO_LEAVE_TRIGGER_NAME "heloLeaveTrigger"
