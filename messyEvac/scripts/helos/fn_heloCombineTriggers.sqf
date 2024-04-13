@@ -22,8 +22,6 @@ _haveMultipleTriggers = _triggerCount > 1;
 {
 	_selectedTrigger = _heloEscapeTriggers select _forEachIndex;
 
-	//_triggerName = triggerText _selectedTrigger;TODO: Test this removal, should be fine
-
 	_triggerVarName = PT_HELO_LEAVE_TRIGGER_NAME + str _forEachIndex;
 
 	_combinedTrigger setvariable [_triggerVarName, _selectedTrigger];
@@ -31,16 +29,12 @@ _haveMultipleTriggers = _triggerCount > 1;
 	_triggersActivated append [_triggerVarName];
 
 	//triggerActivated check does not need to grab the trigger via missionNamespace
-	_combinedActivatedStr = _combinedActivatedStr + "triggerActivated " + /*"getVariable " +*/ _triggerVarName;
-	//[format["Helo Combine Triggers - Test: %1", _combinedActivatedStr]] call messyEvac_fnc_debugLog;
+	_combinedActivatedStr = _combinedActivatedStr + "triggerActivated " + _triggerVarName;
 
 	if(_haveMultipleTriggers) then {
-		//["Helo Combine Triggers - Multiple Triggers If Block"] call messyEvac_fnc_debugLog;
-
 		//If we aren't the last trigger, append " && "
 		if(_forEachIndex < (_triggerCount - 1)) then {
 			_combinedActivatedStr = _combinedActivatedStr + " && ";
-			//[format["Helo Combine Triggers - Test: %1", _combinedActivatedStr]] call messyEvac_fnc_debugLog;
 		};
 	};
 
@@ -61,7 +55,7 @@ _combinedTrigger setTriggerStatements [
 	/* Activated Statement */"[] call messyEvac_fnc_heloEvacTriggered;",
 	/* Deactivated Statement */
 	""
-];//[""Helo Loss"", false, 2] call BIS_fnc_endMission
+];
 
 //Might be the line to disable the spectator respawn
 // likely would need to also disable the respawn generally for those that were dead

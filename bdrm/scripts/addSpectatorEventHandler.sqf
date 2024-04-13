@@ -1,8 +1,5 @@
 spectatorEventHandler = {
 	params ["_isSpectator", "_player"];
-	
-	diag_log "Spectator Handler - Called";
-	systemChat "Spectator Handler - Called";
 
 	if (!_isSpectator) then {
 		[_player] call BDRM_fnc_respawnPlayer;
