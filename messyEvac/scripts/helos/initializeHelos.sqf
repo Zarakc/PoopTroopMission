@@ -11,8 +11,7 @@ _heloSeatCount = [PT_TRANSIT_HELO_TYPE, true] call BIS_fnc_crewCount;
 
 //See how many helo's we'd need at the start;
 
-//TODO: CHANGE BACK
-_desiredHeloCount = 2;//ceil (_playerCount / _heloSeatCount);
+_desiredHeloCount = ceil (_playerCount / _heloSeatCount);
 
 [format["Num required helo's %1", _desiredHeloCount]] call messyEvac_fnc_debugLog;
 

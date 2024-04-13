@@ -17,8 +17,7 @@ _varName = PT_HELO_LEAVE_TRIGGER_NAME + str _i;
 _trigger = createTrigger ["EmptyDetector", PT_HELO_AIRFIELD_ZONE_POS];
 
 //NOT PRESENT so when the helo has left the area/been destroyed, it triggers
-_trigger setTriggerActivation ["VEHICLE", "PRESENT", false];//TODO: NOT PRESENT //PRESENT IF WE WANT TO QUICKLY GET THIS TRIGGERED
-//_trigger setTriggerText "Helo Trigger";TODO: Test this removal, should be fine
+_trigger setTriggerActivation ["VEHICLE", "NOT PRESENT", false];
 _trigger setTriggerArea PT_HELO_AIRFIELD_ZONE_AREA;
 _trigger triggerAttachVehicle [_helo];
 _trigger setEffectCondition "this";
@@ -47,37 +46,3 @@ _heloEscapeTriggers append [_trigger];
 missionNamespace setVariable [PT_HELO_TRIGGERS_VARNAME, _heloEscapeTriggers];
 
 [format["Helo %1 - Trigger Vehicle %2", _helo, triggerAttachedVehicle _trigger]] call messyEvac_fnc_debugLog;
-
-//TODO: Remove this or make it a helper function if it feels like it would be useful in the future.
-MANUAL_TRIGGER_DETAILS_fnc_print = {
-//Grab the manually made trigger here and output its values
-_manualTrigger = missionNamespace getVariable "testHeloTrigger";//"heloAndTransitTrigger";
-_triggerType = triggerType _manualTrigger;
-_triggerArea = triggerArea _manualTrigger;
-
-_triggerStatements = triggerStatements _manualTrigger;
-_condition = _triggerStatements select 0;
-_codeOnActivate = _triggerStatements select 1;
-_codeOnDeactivate = _triggerStatements select 2;
-
-_triggerActivation = triggerActivation _manualTrigger;
-_activatedBy = _triggerActivation select 0;
-_activatedType = _triggerActivation select 1;
-_isRepeating = _triggerActivation select 2;
-
-[format["Helo %1 - Manual Trigger Vehicle %2", _helo, triggerAttachedVehicle _manualTrigger]] call messyEvac_fnc_debugLog;
-[format["Helo %1 - Manual Trigger Type %2", _helo, _triggerType]] call messyEvac_fnc_debugLog;
-[format["Helo %1 - Manual Trigger Area %2", _helo, _triggerArea]] call messyEvac_fnc_debugLog;
-
-[format["Helo %1 - Manual Trigger Condition %2", _helo, _condition]] call messyEvac_fnc_debugLog;
-[format["Helo %1 - Manual Trigger Code on Activate %2", _helo, _codeOnActivate]] call messyEvac_fnc_debugLog;
-[format["Helo %1 - Manual Trigger Code on Deactive %2", _helo, _codeOnDeactivate]] call messyEvac_fnc_debugLog;
-
-[format["Helo %1 - Manual Trigger Activated By %2", _helo, _activatedBy]] call messyEvac_fnc_debugLog;
-[format["Helo %1 - Manual Trigger Activated Type %2", _helo, _activatedType]] call messyEvac_fnc_debugLog;
-[format["Helo %1 - Manual Trigger Is Repeating %2", _helo, _isRepeating]] call messyEvac_fnc_debugLog;
-//End the grabbing of the manual trigger values
-};
-
-//call MANUAL_TRIGGER_DETAILS_fnc_print;
-
