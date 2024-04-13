@@ -1,6 +1,6 @@
 spectatorEventHandler = {
 	params ["_isSpectator", "_player"];
-	
+
 	if (!_isSpectator) then {
 		[_player] call BDRM_fnc_respawnPlayer;
 	}

@@ -64,6 +64,25 @@ class CfgFunctions
 			class setPylonState {};
 		};
 	};
+
+	class messyEvac
+	{
+		class generalFunctions
+		{
+			file = "messyEvac\functions";
+			class debugLog {};
+		}
+
+		class heloFunctions
+		{
+			file = "messyEvac\scripts\helos";
+			class helosLeft {};
+			class heloDestroyed {};
+			class heloTriggerSetUp {};
+			class heloEvacTriggered {};
+			class heloCombineTriggers{};
+		}
+	}
 };
 
 class CfgRespawnTemplates

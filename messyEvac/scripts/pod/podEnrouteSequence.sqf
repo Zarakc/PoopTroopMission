@@ -1,4 +1,5 @@
-#include "..\..\poopTroopConstants.sqf";
+#include "..\..\messyEvacuationConstants.sqf";
+#include "podConstants.sqf";
 
 //Trigger pod decelleration once a height check is triggered and then call the landing sequence
 params ["_pod", "_assignedUnitGroup", "_launchVehicle"];

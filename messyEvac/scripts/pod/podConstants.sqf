@@ -1,15 +1,10 @@
-#define PT_LOCAL_SCRIPTS true
-#define PT_DEBUG_MODE "LOCAL"//SERVER,LOCAL
-#define PT_DEBUG_HEADER "[PoopTroop] - "
-#define PT_DEBUG_SQF "pooperTroopers\scripts\helpers\debugMessages.sqf"
-#define PT_IMPACT_EVENT_FOR_PODS false
-
 //Pod Scripts
-#define PT_POD_SEQUENCE_START "pooperTroopers\scripts\pod\podEnrouteSequence.sqf"
-#define PT_POD_LANDING_SEQUENCE "pooperTroopers\scripts\pod\preparePodLandingSequence.sqf"
-#define PT_POD_IMPACT_HANDLER "pooperTroopers\scripts\pod\podImpactEventHandler.sqf"
-#define PT_POD_IMPACT_FOLLOWUP "pooperTroopers\scripts\pod\postImpactTrigger.sqf"
-#define PT_POD_TROOPER_SPAWN "pooperTroopers\scripts\pod\podTrooperSpawn.sqf"
+#define PT_POD_REINFORCEMENTS_ACE_EVENT "messyEvac\scripts\pod\reinforcementVehiclesAceEvent.sqf"
+#define PT_POD_SEQUENCE_START "messyEvac\scripts\pod\podEnrouteSequence.sqf"
+#define PT_POD_LANDING_SEQUENCE "messyEvac\scripts\pod\preparePodLandingSequence.sqf"
+#define PT_POD_IMPACT_HANDLER "messyEvac\scripts\pod\podImpactEventHandler.sqf"
+#define PT_POD_IMPACT_FOLLOWUP "messyEvac\scripts\pod\postImpactTrigger.sqf"
+#define PT_POD_TROOPER_SPAWN "messyEvac\scripts\pod\podTrooperSpawn.sqf"
 
 //Pod launching constants
 #define PT_COORDINATE_VARIANCE 20
@@ -31,7 +26,7 @@
 //Armored Special Forces Rifleman Late USSR - "UK3CB_CW_SOV_O_LATE_SF_RIF_2"
 #define PT_UNIT_TYPE "UK3CB_CW_SOV_O_EARLY_RIF_2"
 
-
+//"rhsusf\addons\rhsusf_a2port_air\data\sounds\ejection_sound.wss"
 #define PT_POD_DECEL_NOISE "rhsusf\addons\rhsusf_a2port_air\data\sounds\ejection_sound.wss"
 #define PT_POD_DECEL_VOL 2
 #define PT_POD_IMPACT_NOISE "a3\sounds_f\vehicles2\armor\shared\collisions\vehicle_armor_collision_building_01.wss"
@@ -51,6 +46,3 @@
 "a3\sounds_f\structures\doors\genericdoors\squeak3.wss"
 "a3\sounds_f\structures\doors\genericdoors\squeak4.wss"
 */
-
-//"rhsusf\addons\rhsusf_a2port_air\data\sounds\ejection_sound.wss"
-//"a3\sounds_f\environment\ambient\battlefield\battlefield_explosions1.wss"
