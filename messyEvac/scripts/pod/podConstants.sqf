@@ -6,6 +6,8 @@
 #define PT_POD_IMPACT_FOLLOWUP "messyEvac\scripts\pod\postImpactTrigger.sqf"
 #define PT_POD_TROOPER_SPAWN "messyEvac\scripts\pod\podTrooperSpawn.sqf"
 
+#define ME_POD_TYPE "Land_ToiletBox_F"
+
 //Pod launching constants
 #define PT_COORDINATE_VARIANCE 20
 
