@@ -1,5 +1,10 @@
 #define ME_LAUNCHER_VARNAME "podLaunchers"
 
+#define ME_LAUNCHER_ORDER_REINFORCEMENTS "messyEvac\scripts\launchers\orderLauncherToReinforce.sqf"
+#define ME_LAUNCHER_BUSY_VAR "busy"
+#define ME_LAUNCHER_TRIGGER_INTERVAL 30
+#define ME_LAUNCHER_REINFORCE_CONDITION "count thisList > 2;"
+
 #define ME_LAUNCHER_VEHICLE_TYPE "UK3CB_CW_SOV_O_LATE_2S1"
 #define ME_LAUNCHER_SIDE east
 
