@@ -18,19 +18,8 @@ _trigger setTriggerStatements ["false", _triggerStatements select 1, ""];
 
 [_trigger, "Order Launcher To Reinforce", "Deactivation"] call messyEvac_fnc_outputTriggerStatements;
 
-//Get the commander
-_commander = effectiveCommander _launcher;
-
-_tarPos = getPosATL (_units select 0);
-
-_adjPos = [_tarPos] call messyEvac_fnc_addCoordinateVariance;
-
-//Call in our reinforcements
-[format["Order Launcher To Reinforce - Commanding Artillery Fire - %1", _commander]] call messyEvac_fnc_debugLog;
-
-//TODO: Have the busy be marked as done when the firing finishes - an execVM call to allow for sleeping?
-//TODO: Have trigger condition set back once this call finishes
-_commander commandArtilleryFire [_adjPos, ME_LAUNCHER_ROUND_TYPE, count _units];
+//Tell our launcher Commander to reinforce
+[_launcher, _units] call messyEvac_fnc_commanderFireOrder;
 
 sleep ME_LAUNCHER_TRIGGER_INTERVAL;
 
@@ -46,4 +35,5 @@ _trigger setTriggerStatements [ME_LAUNCHER_REINFORCE_CONDITION, _triggerStatemen
 
 [_trigger, "Order Launcher To Reinforce", "Reactivation"] call messyEvac_fnc_outputTriggerStatements;
 
-//TODO: Need to be able to have the trigger called back once it's gone through once
+//TODO: Allow multiple launchers to reinforce on called position
+//TODO: Check ammo count after reinforce - might need to make that unlimited/a set amount per vehicle

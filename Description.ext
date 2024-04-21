@@ -74,12 +74,13 @@ class CfgFunctions
 			class outputTriggerStatements {};
 		}
 
-		class launcherFunctionos
+		class launcherFunctions
 		{
 			file = "messyEvac\scripts\launchers"
 			class spawnLauncher {};
 			class reinforceOnPoint {};
 			class addLauncherToGroup {};
+			class commanderFireOrder {};
 			class addCoordinateVariance {};
 		}
 
