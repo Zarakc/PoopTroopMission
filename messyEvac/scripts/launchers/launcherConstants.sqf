@@ -1,4 +1,5 @@
 #define ME_LAUNCHER_VARNAME "podLaunchers"
+#define ME_LAUNCHER_GROUPINGS_VARNAME "launcherGroupings"
 
 #define ME_LAUNCHER_ORDER_REINFORCEMENTS "messyEvac\scripts\launchers\orderLauncherToReinforce.sqf"
 #define ME_LAUNCHER_BUSY_VAR "busy"

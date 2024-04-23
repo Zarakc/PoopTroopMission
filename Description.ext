@@ -82,6 +82,9 @@ class CfgFunctions
 			class addLauncherToGroup {};
 			class commanderFireOrder {};
 			class addCoordinateVariance {};
+			class enableReinforceTrigger {};
+			class disableReinforceTrigger {};
+			class createLauncherGroupings {};
 		}
 
 		class heloFunctions
