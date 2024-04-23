@@ -5,6 +5,9 @@
 //UK3CB_CW_SOV_O_LATE_2S1
 params ["_unitsDetected", "_spawnMarkerName"];
 
+["ReinforceOnDetectedUnit2 - Called - Currently disabled"] call messyEvac_fnc_debugLog;
+
+/*
 if (!(count _unitsDetected > 0)) then {
 	[format["ReinforceOnDetectedfUnit2.sqf - No units present in detection for %1", _spawnMarkerName]] execVM PT_DEBUG_SQF;
 } else {
@@ -55,3 +58,4 @@ if (!(count _unitsDetected > 0)) then {
 		//} forEach _dumpers;
 	};
 };
+*/

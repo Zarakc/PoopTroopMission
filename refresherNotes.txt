@@ -17,3 +17,6 @@ syntax works for sure
 
 //Creating a function
 set up the classes inside the Description.ext file
+
+_y usage
+Iterating over a HashMap with forEach will return the key as _x and the value as _y. 

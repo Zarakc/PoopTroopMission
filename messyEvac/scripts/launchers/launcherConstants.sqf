@@ -1,6 +1,11 @@
 #define ME_LAUNCHER_VARNAME "podLaunchers"
 #define ME_LAUNCHER_GROUPINGS_VARNAME "launcherGroupings"
 
+//Used for setting the unit group the launchers use for their reinforcements
+#define ME_LAUNCHER_UNITGROUP_VARNAME "launcherUnitGroup"
+
+#define ME_LAUNCHER_HELO_REINFORCERS "launcherHeloReinforcers"
+
 #define ME_LAUNCHER_ORDER_REINFORCEMENTS "messyEvac\scripts\launchers\orderLauncherToReinforce.sqf"
 #define ME_LAUNCHER_BUSY_VAR "busy"
 #define ME_LAUNCHER_TRIGGER_INTERVAL 30

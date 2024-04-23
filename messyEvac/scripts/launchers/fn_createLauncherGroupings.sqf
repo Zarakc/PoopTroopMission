@@ -11,11 +11,8 @@ _launchers = [_leadLauncher, _launcher2, _launcher3, _launcher4];
 _launcherSpecificGroup = createGroup ME_LAUNCHER_SIDE;
 
 //For each launcher, add it to our whitelist to replace their rounds with reinforcements
-{
-	//Trying _x instead of assigning with 'select _forEachIndex
-	[_x, _launcherSpecificGroup] call messyEvac_fnc_addLauncherToGroup;
-
-} forEach _launchers;
+//Also adds the group variable to the launcher itself
+[_launchers, _launcherSpecificGroup] call messyEvac_fnc_addLauncherToGroup;
 
 //Grab our existing groupings, if present
 _launcherGroupings = missionNamespace getVariable ME_LAUNCHER_GROUPINGS_VARNAME;
@@ -26,7 +23,7 @@ if(isNil "_launcherGroupings") then {
 };
 
 //Hashmap entry with [#, [created vehicle, created group]]
-_launcherGroupings insert [[0, _launchers]];
+_launcherGroupings insert [[ME_LAUNCHER_HELO_REINFORCERS, _launchers]];
 
 missionNamespace setVariable [ME_LAUNCHER_GROUPINGS_VARNAME, _launcherGroupings];
 
