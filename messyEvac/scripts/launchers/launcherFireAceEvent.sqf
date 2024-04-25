@@ -14,9 +14,9 @@ eventHandlerVehicle = {
 		_mappedVehicle = _x;//was '_y select 0' for when the obj structure was a map
 		[format["Launcher Trigger - Vehicle - %1", _vehicle, _unitGroup]] call messyEvac_fnc_debugLog;
 
-		_unitGroup = _mappedVehicle getVariable ME_LAUNCHER_UNITGROUP_VARNAME;//TODO: 04/22/2024 Check this new usage
+		_unitGroup = _mappedVehicle getVariable ME_LAUNCHER_UNITGROUP_VARNAME;
 
-		//If one of our registered pooBoys is firing, then we're firing a pooBoy, ignore otherwise.
+		//If one of our registered reinforcers is firing, then we're reinforcing, ignore otherwise.
 		if(_vehicle == _mappedVehicle) then {
 
 			[format["Launcher Trigger - Vehicle matched %1 - Group %2", _vehicle, _unitGroup]] call messyEvac_fnc_debugLog;

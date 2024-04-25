@@ -5,7 +5,7 @@
 // It is dependent on each vehicle having the reinforcement unit it supplies saved to the launcher vehicle itself
 
 //Called from fn_spawnLauncher.sqf
-params["_groupedLaunchers", "_launcherSpecificGroup"];
+params["_groupedLauncherKey", "_reinforceUnitGroup"];
 
 _launchers = missionNamespace getVariable ME_LAUNCHER_VARNAME;
 
@@ -13,13 +13,16 @@ if(isNil "_launchers") then {
 	_launchers = [];
 };
 
+//Grab the launchers from the mission var populated with the array of launchers for each reinforce position(s)
+_groupedLaunchers = missionNamespace getVariable _groupedLauncherKey;
+
 //For each launcher, give them their unit group variable
 {
-	_x setVariable [ME_LAUNCHER_UNITGROUP_VARNAME, _launcherSpecificGroup];
+	_x setVariable [ME_LAUNCHER_UNITGROUP_VARNAME, _reinforceUnitGroup];
 } forEach _groupedLaunchers;
 
-//Array for all whitelsited launchers]
-_launchers append _groupedLaunchers;//Might need to loop
+//Array for all whitelsited launchers
+_launchers append _groupedLaunchers;
 
 missionNamespace setVariable [ME_LAUNCHER_VARNAME, _launchers];
 

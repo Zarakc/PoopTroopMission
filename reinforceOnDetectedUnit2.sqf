@@ -6,6 +6,7 @@
 params ["_unitsDetected", "_spawnMarkerName"];
 
 ["ReinforceOnDetectedUnit2 - Called - Currently disabled"] call messyEvac_fnc_debugLog;
+//Disabled while reworking vehicle 
 
 /*
 if (!(count _unitsDetected > 0)) then {

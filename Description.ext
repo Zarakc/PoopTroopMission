@@ -79,8 +79,8 @@ class CfgFunctions
 			file = "messyEvac\scripts\launchers"
 			class spawnLauncher {};
 			class reinforceOnPoint {};
-			class addLauncherToGroup {};
 			class commanderFireOrder {};
+			class addLaunchersToGroup {};
 			class addCoordinateVariance {};
 			class enableReinforceTrigger {};
 			class disableReinforceTrigger {};
