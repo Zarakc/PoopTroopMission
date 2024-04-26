@@ -1,4 +1,4 @@
-Current TODO: Set up other reinforce triggers and their corresponding groups
+Current TODO: Set up the squads and their initial engagements to get to the airfield
 
 Function Call/Variable syntax
 
