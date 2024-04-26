@@ -71,14 +71,20 @@ class CfgFunctions
 		{
 			file = "messyEvac\functions";
 			class debugLog {};
+			class outputTriggerStatements {};
 		}
 
-		class launcherFunctionos
+		class launcherFunctions
 		{
 			file = "messyEvac\scripts\launchers"
 			class spawnLauncher {};
-			class addLauncherToGroup {};
+			class reinforceOnPoint {};
+			class commanderFireOrder {};
+			class addLaunchersToGroup {};
 			class addCoordinateVariance {};
+			class enableReinforceTrigger {};
+			class disableReinforceTrigger {};
+			class createLauncherGroupings {};
 		}
 
 		class heloFunctions

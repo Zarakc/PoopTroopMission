@@ -10,11 +10,13 @@ eventHandlerVehicle = {
 	[format["Launcher Trigger - Received Launchers: %1", _launchers]] call messyEvac_fnc_debugLog;
 		
 	//forEach _launcher;
-	({
-		_mappedVehicle = _y select 0;
-		_unitGroup = _y select 1;
+	{
+		_mappedVehicle = _x;//was '_y select 0' for when the obj structure was a map
+		[format["Launcher Trigger - Vehicle - %1", _vehicle, _unitGroup]] call messyEvac_fnc_debugLog;
 
-		//If one of our registered pooBoys is firing, then we're firing a pooBoy, ignore otherwise.
+		_unitGroup = _mappedVehicle getVariable ME_LAUNCHER_UNITGROUP_VARNAME;
+
+		//If one of our registered reinforcers is firing, then we're reinforcing, ignore otherwise.
 		if(_vehicle == _mappedVehicle) then {
 
 			[format["Launcher Trigger - Vehicle matched %1 - Group %2", _vehicle, _unitGroup]] call messyEvac_fnc_debugLog;
@@ -29,7 +31,7 @@ eventHandlerVehicle = {
 			[_pod, _unitGroup, _vehicle] execVM PT_POD_SEQUENCE_START;
 		};
 		
-	}) forEach _launchers;
+	} forEach _launchers;
 };
 
 ["ace_firedNonPlayerVehicle", eventHandlerVehicle] call CBA_fnc_addEventHandler;
