@@ -8,6 +8,7 @@ params["_launchers", "_units", "_trigger"];
 _ORDER_REINFORCE_DEBUG_HEADER = "Order Launcher To Reinforce";
 
 [format["Order Launcher To Reinforce - Trigger - %1", _trigger]] call messyEvac_fnc_debugLog;
+[format["Order Launcher To Reinforce - Launchers - %1", _launchers]] call messyEvac_fnc_debugLog;
 
 _leadLauncher = _launchers select 0;
 

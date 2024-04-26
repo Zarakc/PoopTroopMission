@@ -6,6 +6,7 @@
 //Key for pulling the group of launchers that reinforce the helo pad areas
 #define ME_LAUNCHER_HELO_REINFORCERS "launcherHeloReinforcers"
 #define ME_LAUNCHER_GARAGE_REINFORCERS "launcherGarageReinforcers"
+#define ME_LAUNCHER_HELO_GARAGE_REINFORCERS "launcherHeloGarageReinforcers"
 
 #define ME_LAUNCHER_ORDER_REINFORCEMENTS "messyEvac\scripts\launchers\orderLaunchersToReinforce.sqf"
 //Variable to track if lead launcher is busy reinforcing

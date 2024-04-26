@@ -1,4 +1,4 @@
-Current TODO: 
+Current TODO: Set up other reinforce triggers and their corresponding groups
 
 Function Call/Variable syntax
 
