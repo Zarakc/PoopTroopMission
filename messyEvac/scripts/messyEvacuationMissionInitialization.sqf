@@ -15,3 +15,7 @@ missionNamespace setVariable ["respawnEnabled", true];
 execVM PT_POD_REINFORCEMENTS_ACE_EVENT;
 //Create the reinforcement launcher groupings
 [] call messyEvac_fnc_createLauncherGroupings;
+
+_testUnit = missionNamespace getVariable "testRadioMan";
+_unitGroup = group _testUnit;
+[format["Eastern Unit - Group: %1", _unitGroup]] call messyEvac_fnc_debugLog;

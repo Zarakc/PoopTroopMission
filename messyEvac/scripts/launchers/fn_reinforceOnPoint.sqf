@@ -3,8 +3,7 @@
 //missionVarname for reinforcer group to use, Trigger thisList, and trigger itself
 params["_launcherGroupKey", "_units", "_trigger"];
 
-["Reinforce On Point - Called"] call messyEvac_fnc_debugLog;
-[format["Reinforce On Point - Launcher Group Varname: %1", _launcherGroupKey]] call messyEvac_fnc_debugLog;
+//[format["Reinforce On Point - Launcher Group Varname: %1", _launcherGroupKey]] call messyEvac_fnc_debugLog;
 
 //boolean used to see if our launcher(s) are currently busy and call reinforcements if not.
 _continue = false;
@@ -34,7 +33,7 @@ if (isNil "_isLauncherBusy") then {
 //isNil "_isLauncherBusy" || _isLauncherBusy == false, we continue
 if (_continue == true) then {
 
-	["Reinforce On Point - Inside If statement"] call messyEvac_fnc_debugLog;
+	//["Reinforce On Point - Inside If statement"] call messyEvac_fnc_debugLog;
 
 	//orderLauncherToReinforce.sqf
 	[_ourReinforcers, _units, _trigger] execVM ME_LAUNCHER_ORDER_REINFORCEMENTS;

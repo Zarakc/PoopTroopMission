@@ -4,7 +4,6 @@ _minimumDistance = getNumber(getMissionConfig "BDRMConfig" >> "respawnDistanceMi
 _maximumDistance = getNumber(getMissionConfig "BDRMConfig" >> "respawnDistanceMaximum");
 _aboveTerrainLevel = getNumber(getMissionConfig "BDRMConfig" >> "ParachuteRespawn" >> "aboveTerrainLevel");
 
-//TODO: Pass the player squad into the respawnPosition script
 _group = group _player;
 _groupName = groupId _group;
 _pos = [_groupName] call BDRM_fnc_getRespawnPosition;

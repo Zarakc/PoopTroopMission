@@ -7,31 +7,26 @@ eventHandlerVehicle = {
 
 	_launchers = missionNamespace getVariable ME_LAUNCHER_VARNAME;
 	
-	[format["Launcher Trigger - Received Launchers: %1", _launchers]] call messyEvac_fnc_debugLog;
-		
-	//forEach _launcher;
-	{
-		_mappedVehicle = _x;//was '_y select 0' for when the obj structure was a map
-		[format["Launcher Trigger - Vehicle - %1", _vehicle, _unitGroup]] call messyEvac_fnc_debugLog;
+	//[format["Launcher Trigger - Received Launchers: %1", _launchers]] call messyEvac_fnc_debugLog;
+	
+	_isFoundIndex = _launchers findIf { _x == _vehicle};
+	[format["Launcher Trigger - FindIf Index - %1", _isFoundIndex]] call messyEvac_fnc_debugLog;
 
-		_unitGroup = _mappedVehicle getVariable ME_LAUNCHER_UNITGROUP_VARNAME;
+	if(_isFoundIndex != -1) then {
+		_matchedVehicle = _launchers select _isFoundIndex;
 
-		//If one of our registered reinforcers is firing, then we're reinforcing, ignore otherwise.
-		if(_vehicle == _mappedVehicle) then {
+		_unitGroup = _matchedVehicle getVariable ME_LAUNCHER_UNITGROUP_VARNAME;
+		[format["Launcher Trigger - (findId) Vehicle matched %1 - Group %2", _vehicle, _unitGroup]] call messyEvac_fnc_debugLog;
 
-			[format["Launcher Trigger - Vehicle matched %1 - Group %2", _vehicle, _unitGroup]] call messyEvac_fnc_debugLog;
+		//Get velocity of projectile then set our pod's position to it.
+		_projectileVelocity = velocity _projectile;
+		_pod = ME_POD_TYPE createVehicle getPos _projectile;
+		deleteVehicle _projectile;
+		_pod setVelocity _projectileVelocity;
 
-			//Get velocity of projectile then set our pod's position to it.
-			_projectileVelocity = velocity _projectile;
-			_pod = ME_POD_TYPE createVehicle getPos _projectile;
-			deleteVehicle _projectile;
-			_pod setVelocity _projectileVelocity;
-
-			["Launcher Trigger - Calling podEnrouteSequence"] call messyEvac_fnc_debugLog;
-			[_pod, _unitGroup, _vehicle] execVM PT_POD_SEQUENCE_START;
-		};
-		
-	} forEach _launchers;
+		["Launcher Trigger - Calling podEnrouteSequence"] call messyEvac_fnc_debugLog;
+		[_pod, _unitGroup, _vehicle] execVM PT_POD_SEQUENCE_START;
+	};
 };
 
 ["ace_firedNonPlayerVehicle", eventHandlerVehicle] call CBA_fnc_addEventHandler;
