@@ -1,4 +1,4 @@
-Current TODO: Set up the squads and their initial engagements to get to the airfield
+Current TODO: Figure out how to ensure vehicle reinforcements wait for their ground reinforcement counterpart to load in
 
 Function Call/Variable syntax
 
