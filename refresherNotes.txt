@@ -1,4 +1,4 @@
-Current TODO: Figure out how to ensure vehicle reinforcements wait for their ground reinforcement counterpart to load in
+Current TODO: Review units beyond first encounter
 
 Function Call/Variable syntax
 
