@@ -73,6 +73,7 @@ class CfgFunctions
 			file = "messyEvac\functions";
 			class debugLog {};
 			class outputTriggerStatements {};
+			class presentCereal {};
 		}
 
 		class launcherFunctions

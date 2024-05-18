@@ -10,8 +10,6 @@ eventHandlerVehicle = {
 	//[format["Launcher Trigger - Received Launchers: %1", _launchers]] call messyEvac_fnc_debugLog;
 	
 	_isFoundIndex = _launchers findIf { _x == _vehicle};
-	[format["Launcher Trigger - FindIf Index - %1", _isFoundIndex]] call messyEvac_fnc_debugLog;
-
 	//TODO: Hashmap for unregistered vehicles to avoid referencing launchers array each time?
 
 	if(_isFoundIndex != -1) then {
