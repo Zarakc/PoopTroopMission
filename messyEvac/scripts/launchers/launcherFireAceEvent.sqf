@@ -25,7 +25,7 @@ eventHandlerVehicle = {
 		_pod setVelocity _projectileVelocity;
 
 		["Launcher Trigger - Calling podEnrouteSequence"] call messyEvac_fnc_debugLog;
-		[_pod, _unitGroup, _vehicle] execVM PT_POD_SEQUENCE_START;
+		[_pod, _unitGroup, _vehicle] execVM ME_POD_SEQUENCE_START;
 	};
 };
 

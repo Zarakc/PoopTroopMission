@@ -10,7 +10,7 @@ params ["_unitsDetected", "_spawnMarkerName"];
 
 /*
 if (!(count _unitsDetected > 0)) then {
-	[format["ReinforceOnDetectedfUnit2.sqf - No units present in detection for %1", _spawnMarkerName]] execVM PT_DEBUG_SQF;
+	[format["ReinforceOnDetectedfUnit2.sqf - No units present in detection for %1", _spawnMarkerName]] execVM ME_DEBUG_SQF;
 } else {
 	//TODO: Check which of our dumpers can reach the target
 	//getMarkerPos "dump1" inRangeOfArtillery [[arty5], "rhs_mag_3of56_35"];
@@ -44,8 +44,8 @@ if (!(count _unitsDetected > 0)) then {
 			_tarPos inRangeOfArtillery [[_createdLauncher], "rhs_mag_3of56_35"]
 		]] call messyEvac_fnc_debugLog;
 		
-		// _xRand = random PT_COORDINATE_VARIANCE + (_tarPos select 0);
-		// _yRand = random PT_COORDINATE_VARIANCE + (_tarPos select 1);
+		// _xRand = random ME_COORDINATE_VARIANCE + (_tarPos select 0);
+		// _yRand = random ME_COORDINATE_VARIANCE + (_tarPos select 1);
 		_adjPos = [_tarPos] call messyEvac_fnc_addCoordinateVariance;//[_xRand, _yRand, _tarPos select 2];
 
 		//For each dumper, send reinforcements on the location of the first unit noticed

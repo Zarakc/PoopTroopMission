@@ -6,6 +6,6 @@ params ["_player", "_didJIP"];
 [_player] execVM "bdrm\scripts\setup\setupLocalPlayer.sqf";
 //BDRM SETUP END
 
-if(PT_LOCAL_SCRIPTS == true) then {
+if(ME_LOCAL_SCRIPTS == true) then {
 	execVM ME_INITIALIZE_MISSION;
 };
