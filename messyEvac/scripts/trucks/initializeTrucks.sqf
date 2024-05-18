@@ -32,6 +32,15 @@ for [{private _i = 0}, {_i < _desiredHeloCount}, {_i = _i + 1}] do {
 
 		_truck = _truckType createVehicle (_spawn select 0);//POS from spawn[]
 		_truck setDir (_spawn select 1);//ROT from spawn[]
+
+		//If we're making a repair vehicle, spawn two repair kit in the back of item
+		if(typeOf _truck == PT_REPAIR_VEHICLE_TYPE) then {
+			_truck addItemCargo ["ToolKit",2];
+		};
+
+		//Add another wheel to the cargo(regardless of vehicle)
+		["ACE_Wheel", _truck] call ace_cargo_fnc_loadItem;
+
 		
 		[format["Truck %1 - Init", _truck]] execVM PT_DEBUG_SQF;
 

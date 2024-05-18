@@ -7,5 +7,5 @@ params ["_player", "_didJIP"];
 //BDRM SETUP END
 
 if(PT_LOCAL_SCRIPTS == true) then {
-	execVM PT_INITIALIZE_MISSION;
+	execVM ME_INITIALIZE_MISSION;
 };

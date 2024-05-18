@@ -1,3 +1,5 @@
+briefingName = "Messy Evacuation";
+
 respawn = "BASE";
 respawnTemplates[] = { "BDRM_respawn" };
 
