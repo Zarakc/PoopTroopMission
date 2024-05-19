@@ -8,7 +8,8 @@ _mis = player createDiaryRecord ["diary", ["Credits","
 Brief message about the credits.
 <br/>
 <br/>
-* Author - for doing some work for me.
+* Oronar - Let's us not have to write a lot of extra respawning code!
+* Zarakc - Wrote too many scripts and ended up with a repo to avoid the fall into insanity.
 "]];
 
 // ====================================================================================
@@ -32,12 +33,14 @@ This is meant more as a warmup mission, so it's preferrable to not have people o
 // The code below creates the mission sub-section of notes.
 
 _mis = player createDiaryRecord ["diary", ["Mission","
-TO-DO's
+Breakdown
 <br/>
 <br/>
-Get to the airstrip and procure means of exfiltration for all survivors
+Get to the airstrip
+Find our means of exfiltraction
+Get it running
 Hope someone can fly whatever we find
-Survive
+Survive the flight
 "]];
 
 // ====================================================================================
@@ -50,8 +53,12 @@ FUBAR
 <br/>
 <br/>
 The mission to discover what the Russians have been working on has gone FUBAR.
-We're the leftovers and it's clear our only option is to get out of here.
-There's a nearby airfield that should have a helo to extract us, problem is intel says repair and refuel happen here, and slowly at that.
-Whatever the case, we're going to need to buckle up cause it's going to be a messy evacuation.
+We're pulling the plug and getting ourselves out of here. Thankfully, we commandeered some vehicles that brought us this far.
+
+The airfield should have a helo to extract us, minor snag is intel says there's been a backlog of repairs and refueling. 
+
+We might need to do some field repair/refueling and find the matching vehicles
+
+Whatever the case, we're going to need to buckle up 'cause it's going to be a messy evacuation.
 <br/>
 "]];
