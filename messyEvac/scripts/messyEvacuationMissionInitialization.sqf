@@ -1,6 +1,6 @@
 #include "..\messyEvacuationConstants.sqf";
 
-_players = allPlayers - entities "HeadlessClient_F";
+_players = call BIS_fnc_listPlayers;//allPlayers - entities "HeadlessClient_F";
 
 _playerCount = count _players;
 
