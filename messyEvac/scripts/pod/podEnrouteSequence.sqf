@@ -8,6 +8,10 @@ params ["_pod", "_assignedUnitGroup", "_launchVehicle"];
 
 sleep ME_INITIAL_SLEEP_ON_LAUNCH;
 
+//Moved from preparePodLandingSequence because it didn't make sense to wait to do this?
+//Add the impact handling trigger to the pod
+[_pod] execVM ME_POD_IMPACT_HANDLER;
+
 _stuck = false;
 _prevHeight = "";
 
@@ -26,7 +30,9 @@ waitUntil {
 		
 		if (_Hz isEqualTo _prevHeight) then {
 			_stuck = true;
+			[format["PodEnrouteSequence - Pod %1 - Stuck at %2", _pod, _prevHeight]] execVM ME_DEBUG_SQF;
 		} else {
+			[format["PodEnrouteSequence - Pod %1 - Height check at %2", _pod, _Hz]] execVM ME_DEBUG_SQF;
 			_prevHeight = _Hz;
 		};
 	};

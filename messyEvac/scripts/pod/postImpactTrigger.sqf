@@ -1,6 +1,7 @@
 #include "..\..\messyEvacuationConstants.sqf";
 #include "podConstants.sqf";
 
+//Called from podImpactEventHandler for each pod
 params ["_pod"];
 
 [format["PostImpactTrigger - Pod %1 - Called", _pod]] execVM ME_DEBUG_SQF;

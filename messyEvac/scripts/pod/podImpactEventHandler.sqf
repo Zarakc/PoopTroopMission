@@ -1,6 +1,7 @@
 #include "..\..\messyEvacuationConstants.sqf";
 #include "podConstants.sqf";
 
+//Called in podEnrouteSequence
 params ["_pod"];
 
 _podImpactEventHandler = {
