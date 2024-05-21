@@ -15,5 +15,3 @@ missionNamespace setVariable ["respawnEnabled", true];
 execVM ME_POD_REINFORCEMENTS_ACE_EVENT;
 //Create the reinforcement launcher groupings
 [] call messyEvac_fnc_createLauncherGroupings;
-
-//execVM ME_INIATIE_REINFORCEMENTS;

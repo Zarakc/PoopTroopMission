@@ -100,12 +100,6 @@ class CfgFunctions
 			class heloEvacTriggered {};
 			class heloCombineTriggers{};
 		}
-
-		class reinforcementsFunctions
-		{
-			file = "messyEvac\scripts\reinforcements";
-			class controlHideReinforcements {};
-		}
 	}
 };
 
