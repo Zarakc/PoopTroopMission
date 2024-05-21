@@ -16,7 +16,7 @@ _inRange = _adjPos inRangeOfArtillery [[_launcher],  ME_LAUNCHER_ROUND_TYPE];
 _ammoCount = magazinesAmmo _launcher;
 
 //Call in our reinforcements
-[format["Commander Reinforce Order - Commanding Artillery Fire - %1 - In Range: %2 - Ammo Left: %3", _commander, _inRange, _ammoCount]] call messyEvac_fnc_debugLog;
+[format["Commander Reinforce Order - Commanding Artillery Fire - %1 - In Range: %2", _commander, _inRange]] call messyEvac_fnc_debugLog;
 
 [format["Commander Reinforce Order - Ammo Left: %1", _ammoCount]] call messyEvac_fnc_debugLog;
 

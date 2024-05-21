@@ -1,4 +1,4 @@
-Current TODO: Review units beyond first encounter
+Current TODO: Look into spacing out/ironing out reinforce timing/numbers and possible rearming of ammo
 
 Function Call/Variable syntax
 
