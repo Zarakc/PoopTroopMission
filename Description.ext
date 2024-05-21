@@ -1,9 +1,12 @@
+briefingName = "Messy Evacuation";
+
 respawn = "BASE";
 respawnTemplates[] = { "BDRM_respawn" };
 
 class BDRMConfig {
 	version = "1.5.1";
-	respawnMarkerName = "bdrm_respawn";
+	respawnEastMarkerName = "bdrm_eastRespawn";
+	respawnSouthMarkerName = "bdrm_southRespawn";
 	sideRespawnMarkerName = "respawn_west";
 	loadoutVariableName = "bdrm_savedLoadout";
 	respawnDistanceMinimum = 1;
@@ -72,11 +75,12 @@ class CfgFunctions
 			file = "messyEvac\functions";
 			class debugLog {};
 			class outputTriggerStatements {};
+			class presentCereal {};
 		}
 
 		class launcherFunctions
 		{
-			file = "messyEvac\scripts\launchers"
+			file = "messyEvac\scripts\launchers";
 			class spawnLauncher {};
 			class reinforceOnPoint {};
 			class commanderFireOrder {};

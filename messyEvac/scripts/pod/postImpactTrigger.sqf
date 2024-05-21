@@ -1,12 +1,13 @@
 #include "..\..\messyEvacuationConstants.sqf";
 #include "podConstants.sqf";
 
+//Called from podImpactEventHandler for each pod
 params ["_pod"];
 
-[format["PostImpactTrigger - Pod %1 - Called", _pod]] execVM PT_DEBUG_SQF;
+[format["PostImpactTrigger - Pod %1 - Called", _pod]] execVM ME_DEBUG_SQF;
 
-sleep PT_POD_PERSIST_DURATION;
+sleep ME_POD_PERSIST_DURATION;
 
 deleteVehicle _pod;
 
-[format["PostImpactTrigger - Pod %1 - Finished", _pod]] execVM PT_DEBUG_SQF;
+[format["PostImpactTrigger - Pod %1 - Finished", _pod]] execVM ME_DEBUG_SQF;

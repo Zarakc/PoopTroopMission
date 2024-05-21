@@ -4,7 +4,10 @@ _minimumDistance = getNumber(getMissionConfig "BDRMConfig" >> "respawnDistanceMi
 _maximumDistance = getNumber(getMissionConfig "BDRMConfig" >> "respawnDistanceMaximum");
 _aboveTerrainLevel = getNumber(getMissionConfig "BDRMConfig" >> "ParachuteRespawn" >> "aboveTerrainLevel");
 
-_pos = call BDRM_fnc_getRespawnPosition;
+_group = group _player;
+_groupName = groupId _group;
+_pos = [_groupName] call BDRM_fnc_getRespawnPosition;
+
 _pos = [_pos, _minimumDistance, _maximumDistance] call BIS_fnc_findSafePos;
 
 

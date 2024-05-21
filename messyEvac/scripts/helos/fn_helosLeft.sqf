@@ -1,5 +1,5 @@
 //Helos mission variable has to exist here, so no need to check for nil
-_helos = missionNamespace getVariable PT_HELOS;
+_helos = missionNamespace getVariable ME_HELOS;
 
 _allDed = true;
 _numHelosLeft = 0;

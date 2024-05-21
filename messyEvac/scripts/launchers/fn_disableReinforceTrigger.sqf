@@ -8,4 +8,4 @@ _triggerStatements = triggerStatements _trigger;
 
 _trigger setTriggerStatements ["false", _triggerStatements select 1, ""];
 
-[_trigger, "Disable Reinforce Trigger", "Deactivation"] call messyEvac_fnc_outputTriggerStatements;
+//[_trigger, "Disable Reinforce Trigger", "Deactivation"] call messyEvac_fnc_outputTriggerStatements;

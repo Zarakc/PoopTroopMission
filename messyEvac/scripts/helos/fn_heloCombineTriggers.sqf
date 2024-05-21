@@ -2,10 +2,10 @@
 
 //Combined trigger fires if all spawned helo's for the mission leave the airfield
 // this can be physically leaving the area of being destroyed
-_heloEscapeTriggers = missionNamespace getVariable PT_HELO_TRIGGERS_VARNAME;
+_heloEscapeTriggers = missionNamespace getVariable ME_HELO_TRIGGERS_VARNAME;
 
 //Figure out how we can grab multiple triggers and add each of them having triggered onto a newly created trigger
-_combinedTrigger = createTrigger ["EmptyDetector", /*Don't care about position*/PT_HELO_POS_1];
+_combinedTrigger = createTrigger ["EmptyDetector", /*Don't care about position*/ME_HELO_POS_1];
 
 //Grab the triggerNames from the trigger mission variable
 _triggersActivated = [];
@@ -22,7 +22,7 @@ _haveMultipleTriggers = _triggerCount > 1;
 {
 	_selectedTrigger = _heloEscapeTriggers select _forEachIndex;
 
-	_triggerVarName = PT_HELO_LEAVE_TRIGGER_NAME + str _forEachIndex;
+	_triggerVarName = ME_HELO_LEAVE_TRIGGER_NAME + str _forEachIndex;
 
 	_combinedTrigger setvariable [_triggerVarName, _selectedTrigger];
 
