@@ -12,7 +12,7 @@ _ORDER_REINFORCE_DEBUG_HEADER = "Order Launcher To Reinforce";
 
 _leadLauncher = _launchers select 0;
 
-//Mark the lead launcher of the grouping as busy and 'disable' our trigger for now
+//Mark the lead launcher of the grouping as busy
 _leadLauncher setVariable [ME_LAUNCHER_BUSY_VAR, true];
 
 //Disable the reinforce trigger we're working with
@@ -23,12 +23,12 @@ _leadLauncher setVariable [ME_LAUNCHER_BUSY_VAR, true];
 	[_x, _units] call messyEvac_fnc_commanderFireOrder;
 } forEach _launchers;
 
+//Delay to give some breathing room between reinforcement barrages
 sleep ME_LAUNCHER_TRIGGER_INTERVAL;
 
-//Make the launcher not flagged as busy anymore, change the trigger interval, and 'reset' the trigger condition
-// so it can be activated again
+//Make the launcher not flagged as busy anymore
 _leadLauncher setVariable [ME_LAUNCHER_BUSY_VAR, false];
-//[format["Order Launcher To Reinforce - Lead Launcher - %1 - Now Free", _leadLauncher]] call messyEvac_fnc_debugLog;
+[format["Order Launcher To Reinforce - Lead Launcher - %1 - Now Free", _leadLauncher]] call messyEvac_fnc_debugLog;
 
 //Enable the reinforce trigger now that we're 'done'
 [_trigger] call messyEvac_fnc_enableReinforceTrigger;

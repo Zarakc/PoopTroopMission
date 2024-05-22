@@ -6,7 +6,9 @@ params["_launcher", "_units"];
 //Get the commander
 _commander = effectiveCommander _launcher;
 
-_tarPos = getPosATL (_units select 0);
+//Get the pos of randomly selected member
+_target = selectRandom _units;
+_tarPos = getPosATL _target;
 
 _adjPos = [_tarPos] call messyEvac_fnc_addCoordinateVariance;
 
