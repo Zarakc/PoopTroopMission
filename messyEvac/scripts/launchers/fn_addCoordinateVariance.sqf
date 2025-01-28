@@ -1,6 +1,6 @@
 #include "launcherConstants.sqf";
 
-//Called from reinforceOnDetectedUnit2.sqf
+//Called from fn_commanderFireOrder.sqf
 params["_targetPos"];
 
 ["Add Coordinate Variance - Called"] call messyEvac_fnc_debugLog;

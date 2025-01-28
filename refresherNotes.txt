@@ -1,4 +1,5 @@
-Current TODO: Look into spacing out/ironing out reinforce timing/numbers and possible rearming of ammo
+Current TODO: Look into spacing out/ironing out reinforce timing/numbers
+    - Validate corpse cleanup
 
 Function Call/Variable syntax
 

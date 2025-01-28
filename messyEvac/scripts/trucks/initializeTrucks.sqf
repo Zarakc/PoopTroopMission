@@ -6,6 +6,9 @@ params ["_playerCount"];
 
 [format["Trucks - Passed player count - %1", _playerCount]] execVM ME_DEBUG_SQF;
 
+//Calling the respawn vehicle damage set up
+[] execVM ME_RESPAWN_VEHICLE_SETUP;
+
 //Creating a copy of the array so we can perform local-only changes
 _spawnLocations = +ME_TRUCK_LOCATIONS;
 [format["Truck Spawns %1", _spawnLocations]] execVM ME_DEBUG_SQF;

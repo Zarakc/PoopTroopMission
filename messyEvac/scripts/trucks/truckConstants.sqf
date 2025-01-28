@@ -50,3 +50,4 @@
 
 
 #define ME_TRUCK_INIT_DAMAGE "messyEvac\scripts\trucks\damageTruck.sqf"
+#define ME_RESPAWN_VEHICLE_SETUP "messyEvac\scripts\trucks\damageRespawnVehicles.sqf"

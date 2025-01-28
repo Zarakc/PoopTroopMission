@@ -1,4 +1,11 @@
 briefingName = "Messy Evacuation";
+onLoadName = "Messy Evacuation";
+onLoadMission = "The intended mission has gone awry, now there's a last-ditch effort to escape by commandeering helos from the nearby airfield";
+
+//Corpse Despawn Settings
+corpseLimit = 20;
+corpseRemovalMinTime = 60;
+corpseRemovalMaxTime = 300;
 
 respawn = "BASE";
 respawnTemplates[] = { "BDRM_respawn" };
