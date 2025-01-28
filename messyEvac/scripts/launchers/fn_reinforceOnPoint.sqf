@@ -1,9 +1,8 @@
 #include "launcherConstants.sqf";
 
+//Called from reinforce triggers on the map
 //missionVarname for reinforcer group to use, Trigger thisList, and trigger itself
 params["_launcherGroupKey", "_units", "_trigger"];
-
-//[format["Reinforce On Point - Launcher Group Varname: %1", _launcherGroupKey]] call messyEvac_fnc_debugLog;
 
 //boolean used to see if our launcher(s) are currently busy and call reinforcements if not.
 _continue = false;
@@ -12,7 +11,7 @@ _continue = false;
 _ourReinforcers = missionNamespace getVariable _launcherGroupKey;
 [format["Reinforce On Point - Launcher Group: %1", _ourReinforcers]] call messyEvac_fnc_debugLog;
 
-_reinforcerLeader = _outReinforcers select 0;
+_reinforcerLeader = _ourReinforcers select 0;//Was literally mispelled to _outReinforcers
 
 //Check if the launcher are busy
 _isLauncherBusy = _reinforcerLeader getVariable ME_LAUNCHER_BUSY_VAR;
@@ -32,8 +31,6 @@ if (isNil "_isLauncherBusy") then {
 
 //isNil "_isLauncherBusy" || _isLauncherBusy == false, we continue
 if (_continue == true) then {
-
-	//["Reinforce On Point - Inside If statement"] call messyEvac_fnc_debugLog;
 
 	//orderLauncherToReinforce.sqf
 	[_ourReinforcers, _units, _trigger] execVM ME_LAUNCHER_ORDER_REINFORCEMENTS;

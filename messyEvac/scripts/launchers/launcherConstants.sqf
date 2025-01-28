@@ -11,8 +11,8 @@
 #define ME_LAUNCHER_ORDER_REINFORCEMENTS "messyEvac\scripts\launchers\orderLaunchersToReinforce.sqf"
 //Variable to track if lead launcher is busy reinforcing
 #define ME_LAUNCHER_BUSY_VAR "busy"
-//Trigger interval used for once the reinforce trigger is reset
-#define ME_LAUNCHER_TRIGGER_INTERVAL 30
+//Trigger interval used for once the reinforce trigger is reset - 60 is a little too long
+#define ME_LAUNCHER_TRIGGER_INTERVAL 45
 //Trigger Activation condition used for the reinforce triggers
 #define ME_LAUNCHER_REINFORCE_CONDITION "count thisList > 2;"
 
