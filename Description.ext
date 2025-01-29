@@ -107,6 +107,12 @@ class CfgFunctions
 			class heloEvacTriggered {};
 			class heloCombineTriggers{};
 		}
+
+		class respawnFunctions
+		{
+			file = "messyEvac\scripts\respawn";
+			class relocateStrandedRespawn {};
+		}
 	}
 };
 

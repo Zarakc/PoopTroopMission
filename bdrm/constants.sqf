@@ -15,5 +15,10 @@
 #define BDRM_VEHICLE_RESPAWN_MIN_WRECK_DISTANCE 100
 
 //Respawn currently just checks if the unit group is East Remnants - overflow group would change script setup
+#define BDRM_EAST_GROUP_MARKER "East"
+
+#define BDRM_EAST_VEHICLE_MARKER_NAME "respawnEastMarkerName"
+#define BDRM_SOUTH_VEHICLE_MARKER_NAME "respawnSouthMarkerName"
+
 #define BDRM_VEHICLE_RESPAWN_EAST_GROUP "East Remnants"
 #define BDRM_VEHICLE_RESPAWN_SOUTH_GROUP "South Vestige"

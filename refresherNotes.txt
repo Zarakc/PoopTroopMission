@@ -1,5 +1,9 @@
 Current TODO: Look into spacing out/ironing out reinforce timing/numbers
     - Validate corpse cleanup
+    - Check into "Opfor Lost Eastern Garage"
+    - Check into "Lost South Buildings Triggered"
+
+WEST is BLUFOR
 
 Function Call/Variable syntax
 
@@ -28,3 +32,14 @@ AddAction wants the scripts to be enclosed in {}'s to be ran on action select
 
 Unit names in Mission is done via Squad Leader name
 'Squad Leader@Name to Display' is the syntax
+
+Call vs execVM
+Call: sync
+    Throw compiled instructions onto the stack and waits for return
+
+execVM: async
+    private _handle = execVM "123.sqf";
+    waitUntil { isNull _handle };
+
+    _handle = player execVM "test.sqf";
+    waitUntil { scriptDone _handle };

@@ -24,6 +24,12 @@ Respawning
 
 Each set of squads (Southern/Eastern) has their own respawn vehicle.
 <br/>
+Please avoid parking the vehicle deep inside a building as it can cause respawn issues.
+<br/>
+The server will give a hint if this is occurring. If you spawn stuck in a building in Novy Sobor, give it a moment.
+<br/>
+As long as there aren't five dillweeds hoggin' the seats in your respawn vehicle, you'll be transported shortly.
+<br/>
 
 If you've been dead for 4+ minutes and there are still helo's up, feel free to respawn.
 Otherwise, section/team leads/survivors can call respawns after taking exterior bases, and whenever else reasonable.

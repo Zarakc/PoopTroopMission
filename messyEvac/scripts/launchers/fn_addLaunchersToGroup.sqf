@@ -21,7 +21,7 @@ _groupedLaunchers = missionNamespace getVariable _groupedLauncherKey;
 	_x setVariable [ME_LAUNCHER_UNITGROUP_VARNAME, _reinforceUnitGroup];
 } forEach _groupedLaunchers;
 
-//Array for all whitelsited launchers
+//Array for all whitelisted launchers
 _launchers append _groupedLaunchers;
 
 missionNamespace setVariable [ME_LAUNCHER_VARNAME, _launchers];
