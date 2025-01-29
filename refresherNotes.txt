@@ -3,6 +3,7 @@ Current TODO: Look into spacing out/ironing out reinforce timing/numbers
     - Check into "Opfor Lost Eastern Garage"
     - Check into "Lost South Buildings Triggered"
 
+WEST is BLUFOR
 
 Function Call/Variable syntax
 
