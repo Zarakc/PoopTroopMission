@@ -37,22 +37,8 @@ _southSectionMembers = [];
 _eastRespawnMarkerName = getText(getMissionConfig "BDRMConfig" >> BDRM_EAST_VEHICLE_MARKER_NAME);
 _southRespawnMarkerName = getText(getMissionConfig "BDRMConfig" >> BDRM_SOUTH_VEHICLE_MARKER_NAME);
 
-//Used for tracking number of unstranded players to see if we have excess
+//Used for tracking number of unstranded players to see if we have excess at the end
 _unstrandedPlayers = [];
-
-//We now have an array of section members from each region
-//Could call a function that grabs the car for the region
-
-//TODO: SWITCH OFF MAGIC STRINGS - See if we can easily get the BRDM constants from his dir
-//Lifted from Respawn logic
-//Verify which group we're doing a respawn for so we know which respawn vehicle to utilize
-// if(_playerGroupName isEqualTo "East Remnants") then {
-// 	[format ["Stranded Respawn - %1 Section", "East Remnants"]] call BDRM_fnc_diag_log;
-// 	_respawnMarkerName = "bdrm_eastRespawn";
-// } else {
-// 	[format ["Stranded Respawn - %1 Section", "South Vestige"]] call BDRM_fnc_diag_log;
-// 	_respawnMarkerName = "bdrm_southRespawn";
-// };
 
 {
 	[format ["Stranded Respawn - Index: %1", _x]] call messyEvac_fnc_debugLog;
@@ -83,6 +69,42 @@ _unstrandedPlayers = [];
 
 		//Jeeps use the turrets as the passenger seats
 		_turretSeatsSytnax = fullCrew [_respawnVehicle, "turret", true];
+
+		//==================================
+		//Get only empty turret seats for the vehicle
+		_freeTurretSeats = [];
+
+			//private _actionCompatibleCargoIndexes = fullCrew [heli, "cargo", true];
+			//[unit, role, cargoIndex, turretPath, personTurret, assignedUnit, positionName]: 
+			//[<NULL-object>,""turret"",0,[2],true,<NULL-object>,""Passenger (Front Right Seat)""]
+			//_strandedPlayer moveInTurret 
+
+		//[Vehicle, Seat Type, includeEmpty]
+		_vehicleTurretSeats = fullCrew [_respawnVehicle, "turret", true];
+		//Returns [unit, role, cargoIndex, turretPath, personTurret, assignedUnit, positionName]:
+		//We care about unit and turretPath if unit is not null/null obj
+
+		{
+			_seat = _x;
+			_unitInSeat = _seat select 0;
+			[format ["Stranded Respawn - %1's Turrets Unit %2: %3", _respawnVehicle, _forEachIndex, _unitInSeat]] call messyEvac_fnc_debugLog;
+
+			if(isNull _unitInSeat) then {//TODO: See if this works how we expect
+				_turretSeat = _seat select 3;
+				[format ["Stranded Respawn - %1's Turret %2: %3", _respawnVehicle, _forEachIndex, _turretSeat]] call messyEvac_fnc_debugLog;
+				_freeTurretSeats pushBack _turretSeat;
+			};
+		} forEach _vehicleTurretSeats;
+
+		[format ["Stranded Respawn - %1's Free Turret Seats: %2", _respawnVehicle, _freeTurretSeats]] call messyEvac_fnc_debugLog;
+
+		//If there are no free seats, we should break out of this forEach
+		if(count _freeTurretSeats == 0) then {
+			["Stranded Respawn - No Free Seats"] call messyEvac_fnc_debugLog;
+			break;
+		};
+
+		//==================================
 
 		//Turret syntax instead of crewSeat syntax
 		_vehicleTurretSeats = allTurrets [_respawnVehicle, true];
@@ -116,12 +138,7 @@ _unstrandedPlayers = [];
 				[format["Stranded Respawn - More Seats(%1) than stranded players(%2)", _forEachIndex, _curSectionCount]] call messyEvac_fnc_debugLog;
 			};
 
-			//private _actionCompatibleCargoIndexes = fullCrew [heli, "cargo", true];
-			//[unit, role, cargoIndex, turretPath, personTurret, assignedUnit, positionName]: 
-			//[<NULL-object>,""turret"",0,[2],true,<NULL-object>,""Passenger (Front Right Seat)""]
-			//_strandedPlayer moveInTurret 
-
-		} forEach _vehicleTurretSeats;
+		} forEach _freeTurretSeats;
 
 	} else {
 		[format["Stranded Respawn - No Stranded Folk for %1", _respawnMarkerName]] call messyEvac_fnc_debugLog;
