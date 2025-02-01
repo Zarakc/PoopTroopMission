@@ -2,6 +2,7 @@ Current TODO: Look into spacing out/ironing out reinforce timing/numbers
     - Validate corpse cleanup
     - Check into "Opfor Lost Eastern Garage"
     - Check into "Lost South Buildings Triggered"
+    - Remove fuel for artillery vehicles and verify they don't disembark/still reinforce
 
 WEST is BLUFOR
 

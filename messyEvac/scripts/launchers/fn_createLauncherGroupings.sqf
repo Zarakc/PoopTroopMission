@@ -11,8 +11,9 @@ missionNamespace setVariable [ME_LAUNCHER_HELO_REINFORCERS, [_leadLauncher, _lau
 
 //Garage reinforcer group
 _launcherGarage = missionNamespace getVariable "artyGarage1";
+_launcherGarage2 = missionNamespace getVariable "artyGarage2";
 
-missionNamespace setVariable [ME_LAUNCHER_GARAGE_REINFORCERS, [_launcherGarage]];
+missionNamespace setVariable [ME_LAUNCHER_GARAGE_REINFORCERS, [_launcherGarage, _launcherGarage2]];
 
 _leadLauncherHeloGarage = missionNamespace getVariable "artyHeloGarage1";
 _launcherHeloGarage2 = missionNamespace getVariable "artyHeloGarage2";
