@@ -1,7 +1,6 @@
 Current TODO: Look into spacing out/ironing out reinforce timing/numbers
-    - Validate corpse cleanup
-    - Check into "Opfor Lost Eastern Garage"
-    - Check into "Lost South Buildings Triggered"
+    - Lay out 'mine' trigger to blow people up in the marked treelines
+    - Look into bolstering forces in air traffic entrance and main area.
 
 WEST is BLUFOR
 
