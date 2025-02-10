@@ -9,7 +9,7 @@ _eastVehicle = missionNamespace getVariable _eastRespawnVehicleName;
 _southRespawnVehicleName = getText(getMissionConfig "BDRMConfig" >> "respawnSouthMarkerName");
 _southVehicle = missionNamespace getVariable _southRespawnVehicleName;
 
-[format["Damage Respawn Vehicles - %1 and %2", _eastVehicle, _southVehicle]] execVM ME_DEBUG_SQF;
+[format["Damage Respawn Vehicles - %1 and %2", _eastVehicle, _southVehicle]] call messyEvac_fnc_debugLog;
 
 //TODO: FUCK THIS, BOTH SIDES GET A JEEP AND HAVE A DERELICT VEHICLE THAT HELPED GET THEM TO THE START
 
@@ -19,11 +19,11 @@ _respawnVehicles = [_eastVehicle, _southVehicle];
 	//Nested forEach needs this to be able to reference the correct value
 	_currentVehicle = _x;
 	
-	[format["Damage Respawn Vehicles - Working on %1", _currentVehicle]] execVM ME_DEBUG_SQF;
+	[format["Damage Respawn Vehicles - Working on %1", _currentVehicle]] call messyEvac_fnc_debugLog;
 
 	//Set up the mini jeep with engine and one-sided wheel damage
 	_currentVehicle setHitPointDamage ["hitengine", 0.8];
-	[format["Damage Respawn Vehicles - Damaged %1's hitengine", _currentVehicle]] execVM ME_DEBUG_SQF;
+	[format["Damage Respawn Vehicles - Damaged %1's hitengine", _currentVehicle]] call messyEvac_fnc_debugLog;
 
 	_frontLeftWheels = ["hitlfwheel"];
 	_frontRightWheel = ["hitrfwheel"];
@@ -44,11 +44,11 @@ _respawnVehicles = [_eastVehicle, _southVehicle];
 	_wheelScenario = selectRandom _selectedScenarioArray;
 
 	{
-		[format["Damage Respawn Vehicles - Damaging %1's %2", _currentVehicle, _x]] execVM ME_DEBUG_SQF;
+		[format["Damage Respawn Vehicles - Damaging %1's %2", _currentVehicle, _x]] call messyEvac_fnc_debugLog;
 		_currentVehicle setHitPointDamage [_x, 0.9];
 	} forEach _wheelScenario;//There is one spare, so it could be used to partially mitigate the wheel dmg
 
 	//After we rough up the vehicle, ensure it doesn't blow up.
 	_currentVehicle allowDamage false;
-	[format["Damage Respawn Vehicles - %1 is now immune to damage", _currentVehicle]] execVM ME_DEBUG_SQF;
+	[format["Damage Respawn Vehicles - %1 is now immune to damage", _currentVehicle]] call messyEvac_fnc_debugLog;
 } forEach _respawnVehicles;
