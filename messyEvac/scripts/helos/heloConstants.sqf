@@ -36,15 +36,18 @@
 #define ME_HELO_DISABLED_DMG 0.9
 
 //Repair kits with repair truck is sufficient for repairing
-#define ME_HELO_DISABLED_SCENARIOS [ME_HELO_DMG_FUEL_TANK, ME_HELO_NO_FUEL_TANK, ME_HELO_NO_MAIN_ROTOR, ME_HELO_NO_TAIL_ROTOR, ME_HELO_NO_ENGINES, ME_HELO_DMG_ENGINES]
+#define ME_HELO_DISABLED_SCENARIOS [DMG_FUEL_TANK, NO_FUEL_TANK, NO_MAIN_ROTOR, NO_TAIL_ROTOR, NO_ENGINES]
 
-#define ME_HELO_DMG_FUEL_TANK [["hitfuel"], ME_HELO_DISABLED_DMG]//drains fuel down to a reserve amount
-#define ME_HELO_NO_FUEL_TANK [["hitfuel"], 1]//Cannot hold fuel
-#define ME_HELO_NO_MAIN_ROTOR [["hithrotor"], ME_HELO_DISABLED_DMG]//main rotor cannot spin
+//TODO: Validate all scenarios cannot initially fly
 
-#define ME_HELO_DMG_TAIL_ROTOR [["hitvrotor"], ME_HELO_PARTIAL_DMG]//more difficult to control helo
-#define ME_HELO_NO_TAIL_ROTOR [["hitvrotor"], ME_HELO_DISABLED_DMG]//no stabilization, helo spins
+//TODO - Likely change or remove this scenario
+#define DMG_FUEL_TANK [["hitfuel"], ME_HELO_DISABLED_DMG]//drains fuel down to a reserve amount
+#define NO_FUEL_TANK [["hitfuel"], 1]//Cannot hold fuel
+#define NO_MAIN_ROTOR [["hithrotor"], ME_HELO_DISABLED_DMG]//main rotor cannot spin
 
-#define ME_HELO_DMG_ENGINES [["hitengine1", "hitengine2"], ME_HELO_PARTIAL_DMG]//less manuverable
-#define ME_HELO_NO_ENGINES [["hitengine1", "hitengine2"], ME_HELO_DISABLED_DMG]//cannot startup
+#define DMG_TAIL_ROTOR [["hitvrotor"], ME_HELO_PARTIAL_DMG]//more difficult to control helo
+#define NO_TAIL_ROTOR [["hitvrotor"], ME_HELO_DISABLED_DMG]//no stabilization, helo spins
+
+#define DMG_ENGINES [["hitengine1", "hitengine2"], ME_HELO_PARTIAL_DMG]//less manuverable
+#define NO_ENGINES [["hitengine1", "hitengine2"], ME_HELO_DISABLED_DMG]//cannot startup
 //Perhaps fuel level could be looked at. Could look to relocate helo and refuel elsewhere if needed

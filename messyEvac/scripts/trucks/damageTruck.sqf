@@ -18,7 +18,8 @@ private _wheelsToDamage = selectRandom _wheelDmgScenarios;
 
 //Possibly defuel the repair truck
 if(typeOf _truck != ME_FUEL_VEHICLE_TYPE) then {
-	private _fuelAmountScenarios = [0.1, 0.05, 0.02, 0, 0];
+	//0.005 is enough to get the repair to the further helo it seems
+	private _fuelAmountScenarios = [0.007, 0.005, 0.005, 0.002, 0];
 	
 	private _repairTruckFuel = fuel _truck;
 
