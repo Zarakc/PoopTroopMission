@@ -26,6 +26,3 @@ _dmgScenario = selectRandom ME_HELO_DISABLED_SCENARIOS;
 	};
 
 } forEach _dmgScenario;
-
-// [format["Helo %1 - Removing fuel", _helo]] execVM ME_DEBUG_SQF;
-// _helo setFuel 0.01;

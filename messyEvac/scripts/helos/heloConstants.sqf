@@ -32,27 +32,35 @@
 //No fuel
 //Busted engine, etc
 #define ME_HELO_INIT_DAMAGE "messyEvac\scripts\helos\damageHelo.sqf"
-#define ME_HELO_PARTIAL_DMG 0.8
-#define ME_HELO_DISABLED_DMG 0.9
+#define PARTIAL_DMG 0.8
+#define DISABLED_DMG 0.9
+#define FULL_DMG 1
 
 //Repair kits with repair truck is sufficient for repairing
-#define ME_HELO_DISABLED_SCENARIOS [no_rotor_dmg_engine]
-//[DMG_FUEL_TANK, NO_FUEL_TANK, NO_MAIN_ROTOR, NO_TAIL_ROTOR, NO_ENGINES]
+
+
+#define ME_HELO_DISABLED_SCENARIOS [NO_FUEL_TANK, NO_FUEL_TANK, NO_FUEL_TANK, DMG_ENGINES, DMG_ENGINES, NO_ENGINES, NO_FUEL_MROTOR_DMG_FUEL, NO_ROTORS_DMG_ENG, FUCKED_UP, ALL_FUCKED_UP]
 
 //TODO: Validate all scenarios cannot initially fly
 
-//TODO - Likely change or remove this scenario
-#define DMG_FUEL_TANK [["hitfuel", ME_HELO_DISABLED_DMG]]//drains fuel down to a reserve amount
-#define NO_FUEL_TANK [["hitfuel", 1]]//Cannot hold fuel
-#define NO_MAIN_ROTOR [["hithrotor", ME_HELO_DISABLED_DMG]]//main rotor cannot spin
+//Cannot hold fuel
+#define NO_FUEL_TANK [["fuel", 0], ["hitfuel", FULL_DMG]]
 
-//Engine disabled dmg was still able to fly out
-#define no_rotor_dmg_engine [["fuel", 0], ["hitvrotor", ME_HELO_DISABLED_DMG], ["hitengine1", ME_HELO_DISABLED_DMG], ["hitengine2", ME_HELO_PARTIAL_DMG]]
-//Needs to be fully disabled
-#define NO_TAIL_ROTOR [["hitvrotor", ME_HELO_DISABLED_DMG]]//no stabilization, helo spins
-
-//Needs to be actually disabled in some way
-#define DMG_ENGINES [["hitengine1", ME_HELO_PARTIAL_DMG], ["hitengine2", ME_HELO_PARTIAL_DMG]]//less manuverable
 //Initally seems undamaged, but then turns red and cannot rotate
-#define NO_ENGINES [["hitengine1", ME_HELO_DISABLED_DMG], ["hitengine2", ME_HELO_DISABLED_DMG]]//cannot startup
+#define DMG_ENGINES [["fuel", 0], ["hitengine1", DISABLED_DMG], ["hitengine2", DISABLED_DMG]]//cannot startup
+
+#define NO_ENGINES [["fuel", 0], ["hitengine1", FULL_DMG], ["hitengine2", FULL_DMG]]//cannot startup
+
+#define NO_FUEL_MROTOR_DMG_FUEL [["fuel", 0], ["hitfuel", DISABLED_DMG], ["hithrotor", DISABLED_DMG]]//main rotor cannot spin
+
+//Cannot start even without fuel
+#define NO_ROTORS_DMG_ENG [["fuel", 0], ["hitvrotor", DISABLED_DMG], ["hithrotor", DISABLED_DMG], ["hitengine2", DISABLED_DMG]]
+
+#define FUCKED_UP [["fuel", 0], ["hitvrotor", FULL_DMG], ["hithrotor", FULL_DMG], ["hitengine1", DISABLED_DMG], ["hitengine2", DISABLED_DMG]]
+
+#define ALL_FUCKED_UP [["fuel", 0], ["hitfuel", FULL_DMG], ["hitvrotor", FULL_DMG], ["hithrotor", FULL_DMG], ["hitengine1", FULL_DMG], ["hitengine2", FULL_DMG]]
+
+//Needs to be fully disabled
+#define NO_TAIL_ROTOR [["hitvrotor", DISABLED_DMG]]//no stabilization, helo spins
+
 //Perhaps fuel level could be looked at. Could look to relocate helo and refuel elsewhere if needed
