@@ -36,18 +36,23 @@
 #define ME_HELO_DISABLED_DMG 0.9
 
 //Repair kits with repair truck is sufficient for repairing
-#define ME_HELO_DISABLED_SCENARIOS [DMG_FUEL_TANK, NO_FUEL_TANK, NO_MAIN_ROTOR, NO_TAIL_ROTOR, NO_ENGINES]
+#define ME_HELO_DISABLED_SCENARIOS [no_rotor_dmg_engine]
+//[DMG_FUEL_TANK, NO_FUEL_TANK, NO_MAIN_ROTOR, NO_TAIL_ROTOR, NO_ENGINES]
 
 //TODO: Validate all scenarios cannot initially fly
 
 //TODO - Likely change or remove this scenario
-#define DMG_FUEL_TANK [["hitfuel"], ME_HELO_DISABLED_DMG]//drains fuel down to a reserve amount
-#define NO_FUEL_TANK [["hitfuel"], 1]//Cannot hold fuel
-#define NO_MAIN_ROTOR [["hithrotor"], ME_HELO_DISABLED_DMG]//main rotor cannot spin
+#define DMG_FUEL_TANK [["hitfuel", ME_HELO_DISABLED_DMG]]//drains fuel down to a reserve amount
+#define NO_FUEL_TANK [["hitfuel", 1]]//Cannot hold fuel
+#define NO_MAIN_ROTOR [["hithrotor", ME_HELO_DISABLED_DMG]]//main rotor cannot spin
 
-#define DMG_TAIL_ROTOR [["hitvrotor"], ME_HELO_PARTIAL_DMG]//more difficult to control helo
-#define NO_TAIL_ROTOR [["hitvrotor"], ME_HELO_DISABLED_DMG]//no stabilization, helo spins
+//Engine disabled dmg was still able to fly out
+#define no_rotor_dmg_engine [["fuel", 0], ["hitvrotor", ME_HELO_DISABLED_DMG], ["hitengine1", ME_HELO_DISABLED_DMG], ["hitengine2", ME_HELO_PARTIAL_DMG]]
+//Needs to be fully disabled
+#define NO_TAIL_ROTOR [["hitvrotor", ME_HELO_DISABLED_DMG]]//no stabilization, helo spins
 
-#define DMG_ENGINES [["hitengine1", "hitengine2"], ME_HELO_PARTIAL_DMG]//less manuverable
-#define NO_ENGINES [["hitengine1", "hitengine2"], ME_HELO_DISABLED_DMG]//cannot startup
+//Needs to be actually disabled in some way
+#define DMG_ENGINES [["hitengine1", ME_HELO_PARTIAL_DMG], ["hitengine2", ME_HELO_PARTIAL_DMG]]//less manuverable
+//Initally seems undamaged, but then turns red and cannot rotate
+#define NO_ENGINES [["hitengine1", ME_HELO_DISABLED_DMG], ["hitengine2", ME_HELO_DISABLED_DMG]]//cannot startup
 //Perhaps fuel level could be looked at. Could look to relocate helo and refuel elsewhere if needed
