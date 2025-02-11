@@ -1,53 +1,33 @@
 #include "..\..\messyEvacuationConstants.sqf";
 #include "truckConstants.sqf";
 
-params ["_truck", "_truckWheels"];
+//Type of vehicle and wheel damage scenarios
+params ["_truck", "_wheelDmgScenarios"];
 
-[format["Truck %1 - Damage Init", _truck]] execVM ME_DEBUG_SQF;
+[format["Truck %1 - Damage Init", _truck]] call messyEvac_fnc_debugLog;
 
-//See how many wheels we can get away with damaging before it needs to be repaired to move
-// _wheels = [
-// 			"hitlfwheel", "hitlf2wheel", "hitlmwheel",
-// 			"hitrfwheel", "hitrf2wheel", "hitrmwheel"
-// 		];
+private _wheelsToDamage = selectRandom _wheelDmgScenarios;
+[format["Truck %1 - Wheel Scenario %2", _truck, _wheelsToDamage]] call messyEvac_fnc_debugLog;
 
-//TODO: Adjust random per vehicle - repair might have 3/4 wheels down - which is ass.
+{
+	[format["Truck %1 - Damaging %2 to %3", _truck, _x, 0.9]] call messyEvac_fnc_debugLog;
 
-_numWheels = count _truckWheels;
+	//Only partially damaging the wheels since the extra spare is removed now
+	_truck setHitPointDamage [_x, 0.9];
+} forEach _wheelsToDamage;
 
-[format["Truck %1 - Half Wheels %2", _truck, (_numWheels / 2)]] execVM ME_DEBUG_SQF;
-
-_numWheelsToDamage = ceil (random (_numWheels / 2));
-
-[format["Truck %1 - Wheels %2", _truck, _truckWheels]] execVM ME_DEBUG_SQF;
-[format["Truck %1 - Damaging %2 wheels", _truck, _numWheelsToDamage]] execVM ME_DEBUG_SQF;
-
-while { _numWheelsToDamage > 0} do {
-	_wheel = selectRandom _truckWheels;
-
-	//Remove our selected wheel so we don't pick the same
-	//If there's an easy way to do it, errors looped about the below
-	//_wheels = _wheels - [_wheel];
-
-	[format["Truck %1 - Damaging %2 to %3", _truck, _wheel, 1]] execVM ME_DEBUG_SQF;
-
-	_truck setHitPointDamage [_wheel, 1];
-
-	//This line is important if we want to play the game and not "Make log get big and also not load into the game"
-	_numWheelsToDamage = _numWheelsToDamage -1;
-};
-
-//Possibly defuel only if a non-fuel truck
+//Possibly defuel the repair truck
 if(typeOf _truck != ME_FUEL_VEHICLE_TYPE) then {
+	//0.005 is enough to get the repair to the further helo it seems
+	private _fuelAmountScenarios = [0.007, 0.005, 0.005, 0.002, 0];
+	
+	private _repairTruckFuel = fuel _truck;
 
-} else {
-	_test = getFuelCargo _truck;//Something about fuelCargo is breaking the debug
-	[_test] execVM ME_DEBUG_SQF;
+	private _fuelSetAmount = selectRandom _fuelAmountScenarios;
 
-	[format["Fuel Truck %1 - Fuel reserves %2", _truck, _test]] execVM ME_DEBUG_SQF;
-	_truck setFuelCargo 0;
+	[format["Fuel Truck %1 - Fuel reserves %2", _truck, _repairTruckFuel]] call messyEvac_fnc_debugLog;
+	_truck setFuel _fuelSetAmount;
 
-	_test = getFuelCargo _truck;//debug reports 0, Ace interact reports the full 3k
-	[format["Fuel Truck %1 - Removed fuel", _truck]] execVM ME_DEBUG_SQF;
-	[format["Fuel Truck %1 - Fuel reserves %2", _truck, _test]] execVM ME_DEBUG_SQF;
+	_repairTruckFuel = fuel _truck;
+	[format["Fuel Truck %1 - Updated Fuel reserves %2", _truck, _repairTruckFuel]] call messyEvac_fnc_debugLog;
 };

@@ -3,10 +3,15 @@
 #define ME_TRUCK_SPAWN_DETAILS [[ME_REPAIR_VEHICLE_TYPE, ME_REPAIR_VEHICLE_WHEELS], [ME_FUEL_VEHICLE_TYPE, ME_FUEL_VEHICLE_WHEELS]]
 
 #define ME_REPAIR_VEHICLE_TYPE "UK3CB_CW_SOV_O_EARLY_Gaz66_Repair"
-#define ME_REPAIR_VEHICLE_WHEELS ["hitlfwheel", "hitlf2wheel", "hitrfwheel", "hitrf2wheel"]
+#define ME_REPAIR_VEHICLE_WHEELS [ME_VEHICLE_TWO_LEFT_WHEELS, ME_VEHICLE_TWO_RIGHT_WHEELS]
 
 #define ME_FUEL_VEHICLE_TYPE "UK3CB_CW_SOV_O_EARLY_VDV_Kraz255_Fuel"
-#define ME_FUEL_VEHICLE_WHEELS ["hitlfwheel", "hitlf2wheel", "hitlmwheel", "hitrfwheel", "hitrf2wheel", "hitrmwheel"]
+#define ME_FUEL_VEHICLE_WHEELS [ME_VEHICLE_TWO_LEFT_WHEELS, ME_3AXEL_VEHICLE_ALT_TWO_LEFT_WHEELS, ME_VEHICLE_TWO_RIGHT_WHEELS, ME_3AXEL_VEHICLE_ALT_TWO_RIGHT_WHEELS]
+
+#define ME_VEHICLE_TWO_LEFT_WHEELS ["hitlfwheel", "hitlf2wheel"]
+#define ME_VEHICLE_TWO_RIGHT_WHEELS ["hitrfwheel", "hitrf2wheel"]
+#define ME_3AXEL_VEHICLE_ALT_TWO_LEFT_WHEELS ["hitlfwheel", "hitlmwheel"]
+#define ME_3AXEL_VEHICLE_ALT_TWO_RIGHT_WHEELS ["hitrfwheel", "hitrmwheel"]
 //OreoNacho - _Kraz255_Fuel
 //Ural_Fuel
 
