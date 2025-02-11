@@ -4,9 +4,12 @@
 
 //Varname to use for saving individual helo triggers
 #define ME_HELO_LEAVE_TRIGGER_NAME "heloLeaveTrigger"
-//Used to store the generated helo triggers for when each spawned helo
 // leaves the airfield area.
 #define ME_HELO_TRIGGERS_VARNAME "heloEscapeTriggers"
+
+//============== Spawning Constants ================\\
+
+//Used to store the generated helo triggers for when each spawned helo
 #define ME_HELO_AIRFIELD_ZONE_AREA [500, 500, -1, false];
 #define ME_HELO_AIRFIELD_ZONE_POS [12107.272, 12498.655, 0]
 
@@ -26,22 +29,15 @@
 
 #define ME_HELO_CREATE_TRIGGER "messyEvac\scripts\helos\fn_heloTriggerSetUp.sqf"
 
-//Different variations of dmg
-//Red but still working rotors
-//Fully broken roter
-//No fuel
-//Busted engine, etc
+//============== Damage Constants ================\\
+
 #define ME_HELO_INIT_DAMAGE "messyEvac\scripts\helos\damageHelo.sqf"
 #define PARTIAL_DMG 0.8
 #define DISABLED_DMG 0.9
 #define FULL_DMG 1
 
 //Repair kits with repair truck is sufficient for repairing
-
-
 #define ME_HELO_DISABLED_SCENARIOS [NO_FUEL_TANK, NO_FUEL_TANK, NO_FUEL_TANK, DMG_ENGINES, DMG_ENGINES, NO_ENGINES, NO_FUEL_MROTOR_DMG_FUEL, NO_ROTORS_DMG_ENG, FUCKED_UP, ALL_FUCKED_UP]
-
-//TODO: Validate all scenarios cannot initially fly
 
 //Cannot hold fuel
 #define NO_FUEL_TANK [["fuel", 0], ["hitfuel", FULL_DMG]]
@@ -59,8 +55,3 @@
 #define FUCKED_UP [["fuel", 0], ["hitvrotor", FULL_DMG], ["hithrotor", FULL_DMG], ["hitengine1", DISABLED_DMG], ["hitengine2", DISABLED_DMG]]
 
 #define ALL_FUCKED_UP [["fuel", 0], ["hitfuel", FULL_DMG], ["hitvrotor", FULL_DMG], ["hithrotor", FULL_DMG], ["hitengine1", FULL_DMG], ["hitengine2", FULL_DMG]]
-
-//Needs to be fully disabled
-#define NO_TAIL_ROTOR [["hitvrotor", DISABLED_DMG]]//no stabilization, helo spins
-
-//Perhaps fuel level could be looked at. Could look to relocate helo and refuel elsewhere if needed
