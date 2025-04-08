@@ -9,14 +9,16 @@ params["_playerGroupName"];
 
 _respawnMarkerName = 'NotSet';
 
-//TODO: NEED TO CHANGE IF ANOTHER EAST GROUP GETS ADDED
-//Verify which group we're doing a respawn for so we know which respawn vehicle to utilize
-if(_playerGroupName isEqualTo BDRM_VEHICLE_RESPAWN_EAST_GROUP) then {
-	[format ["BDRM respawn - %1 Section", BDRM_VEHICLE_RESPAWN_EAST_GROUP]] call BDRM_fnc_diag_log;
-	_respawnMarkerName = getText(getMissionConfig "BDRMConfig" >> "respawnEastMarkerName");
+//TODO: Validate this works with a new East Overflow
+//Verify if we're respawning an East or South group member
+private _isEast = [BDRM_EAST_GROUP_MARKER, _playerGroupName] call BIS_fnc_inString;
+
+if(_isEast) then {
+	[format ["BDRM respawn - %1 Section", BDRM_EAST_GROUP_MARKER]] call BDRM_fnc_diag_log;
+	_respawnMarkerName = getText(getMissionConfig "BDRMConfig" >> BDRM_EAST_VEHICLE_MARKER_NAME);//TODO: Verify this works with a cosnt
 } else {
-	[format ["BDRM respawn - %1 Section", BDRM_VEHICLE_RESPAWN_SOUTH_GROUP]] call BDRM_fnc_diag_log;
-	_respawnMarkerName = getText(getMissionConfig "BDRMConfig" >> "respawnSouthMarkerName");
+	[format ["BDRM respawn - %1 Section", BDRM_SOUTH_GROUP_MARKER]] call BDRM_fnc_diag_log;
+	_respawnMarkerName = getText(getMissionConfig "BDRMConfig" >> BDRM_SOUTH_VEHICLE_MARKER_NAME);
 };
 
 [format ["BDRM respawn - MarkerName: %1", _respawnMarkerName]] call BDRM_fnc_diag_log;
