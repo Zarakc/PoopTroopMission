@@ -1,7 +1,10 @@
 Current TODO: Look into spacing out/ironing out reinforce timing/numbers
     - Lay out 'mine' trigger to blow people up in the marked treelines
     - Look into bolstering forces in air traffic entrance and main area.
+        - Change units on radar tower and the radar setup
+    - Reduce Garage units (1-3/1-4 at least) patrol radius
     - Add some cover around the helo spawns, as well and the entry into the 1st bases for East and South encounters
+    - Replace SF LAT Rifleman with another unit
 
 WEST is BLUFOR
 
