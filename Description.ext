@@ -83,6 +83,7 @@ class CfgFunctions
 			class debugLog {};
 			class outputTriggerStatements {};
 			class presentCereal {};
+			class blowThemUp {};
 		}
 
 		class launcherFunctions
