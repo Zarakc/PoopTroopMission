@@ -48,7 +48,24 @@ _respawnVehicles = [_eastVehicle, _southVehicle];
 		_currentVehicle setHitPointDamage [_x, 0.9];
 	} forEach _wheelScenario;//There is one spare, so it could be used to partially mitigate the wheel dmg
 
+	//Test out onHit to see if we can mitigate teh damage without making the vehicle immune
+	_currentVehicle addEventHandler ["HandleDamage",{
+		_unit = _this select 0;
+		_damage = _this select 2;
+
+		[format["Damage Respawn Vehicles - HandleDamage %1 being hit for %2", _unit, _damage]] call messyEvac_fnc_debugLog;
+
+
+		//TODO: Check if certain parts of the vehicle can be maintained to a certain %
+		//	Vehicle part dmg might not affect its setDamage
+		if ((damage _unit + _damage) <= 0.7) then {
+			_unit setDamage (damage _unit) + _damage;
+		} else {
+			return;
+		};
+	}];
+
 	//After we rough up the vehicle, ensure it doesn't blow up.
-	_currentVehicle allowDamage false;
-	[format["Damage Respawn Vehicles - %1 is now immune to damage", _currentVehicle]] call messyEvac_fnc_debugLog;
+	//_currentVehicle allowDamage false;
+	//[format["Damage Respawn Vehicles - %1 is now immune to damage", _currentVehicle]] call messyEvac_fnc_debugLog;
 } forEach _respawnVehicles;
