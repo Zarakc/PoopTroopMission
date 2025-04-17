@@ -16,6 +16,7 @@
 
 //Respawn currently just checks if the unit group is East Remnants - overflow group would change script setup
 #define BDRM_EAST_GROUP_MARKER "East"
+#define BDRM_SOUTH_GROUP_MARKER "South"
 
 #define BDRM_EAST_VEHICLE_MARKER_NAME "respawnEastMarkerName"
 #define BDRM_SOUTH_VEHICLE_MARKER_NAME "respawnSouthMarkerName"
