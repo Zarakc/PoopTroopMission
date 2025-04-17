@@ -5,12 +5,10 @@ private _respawnPosition = nil;
 //Unit side and callsign for their group
 params["_playerGroupName"];
 
-[format ["BDRM Player Group Name Received: %1 ", _playerGroupName]] call BDRM_fnc_diag_log;
+[format ["BDRM Player Group Name Received: %1", _playerGroupName]] call BDRM_fnc_diag_log;
 
 _respawnMarkerName = 'NotSet';
 
-//TODO: Validate this works with a new East Overflow
-//Verify if we're respawning an East or South group member
 private _isEast = [BDRM_EAST_GROUP_MARKER, _playerGroupName] call BIS_fnc_inString;
 
 if(_isEast) then {
