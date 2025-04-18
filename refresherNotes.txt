@@ -1,5 +1,5 @@
 Current TODO: Look into spacing out/ironing out reinforce timing/numbers
-    - Lay out 'mine' trigger to blow people up in the marked treelines
+    - See if another fuel can is usable that can be moved once unloaded
 
 WEST is BLUFOR
 

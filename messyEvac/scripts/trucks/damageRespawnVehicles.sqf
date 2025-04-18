@@ -56,36 +56,40 @@ _respawnVehicles = [_eastVehicle, _southVehicle];
 		_unit = _this select 0;
 		_partHit = _this select 1;
 		_damage = _this select 2;
-		//[format["DRV - HandleDamage: %1", _this]] call messyEvac_fnc_debugLog;
 
-		if(_damage == 0) then {return};
-
-		[format["HandleDamage: %1's %2 being hit for %3", _unit, _partHit, _damage]] call messyEvac_fnc_debugLog;
-
-		//Parts we have (likely) already damaged that we want to not break/heal
-		private _partToDmgMapping = createHashMapFromArray[["hit_engine", 0.8], ["wheel_1_1_steering", 0.9], ["wheel_1_2_steering", 0.9], ["wheel_2_1_steering", 0.9], ["wheel_2_2_steering", 0.9]];
-		
-		//TODO: Decide if fuel should be handled normally
-		//Parts we want to be damaged normally
-		private _partsToDmgNormally = ["spare1", "door11", "door12", "door21", "door22", "hood1", "hit_fuel"];
-
-		private _dmgMapping = _partToDmgMapping get _partHit;
-
-		//Tried to use str wrapping since isNil doesn't like, doesn't work how I want
-		//isNull doesn't work - trying _dmgMapping isEqualTo objNull
-		if(_dmgMapping isEqualTo objNull) then {
-
-			if(_partHit in _partsToDmgNormally) then {
-				[format["HandleDamage: Normal dmg calc for %1", _partHit]] call messyEvac_fnc_debugLog;
-				//Not even using 'return;' since that qualifies as us handling the dmg instead of it being interpretted as no value returned so the game handles it
-			} else {
-				[format["HandleDamage: Hit Not Found %1", _partHit]] call messyEvac_fnc_debugLog;
-				//Not even using 'return;' since that qualifies as us handling the dmg instead of it being interpretted as no value returned so the game handles it
-			};
+		//Saw instances of 0 damage going through the flow, so cutting them off earlier
+		//Testing if removal of not targetted
+		if(_damage == 0 or _partHit isEqualTo "") then {
+			[format["HandleDamage: Skipping - Dmg: %1 Part: %2", _damage, _partHit]] call messyEvac_fnc_debugLog;
+			0;//Trying to haave 0 as the return and everything else being in the else block since the skipping wasn't working
 		} else {
-			[format["HandleDamage: Returning %1 for %2", _dmgMapping, _partHit]] call messyEvac_fnc_debugLog;
-			//Only return a value if we want to handle the dmg ourselves
-			_dmgMapping;
+			[format["HandleDamage: %1's %2 being hit for %3", _unit, _partHit, _damage]] call messyEvac_fnc_debugLog;
+
+			//Parts we have (likely) already damaged that we want to not break/heal
+			private _partToDmgMapping = createHashMapFromArray[["hit_engine", 0.8], ["wheel_1_1_steering", 0.9], ["wheel_1_2_steering", 0.9], ["wheel_2_1_steering", 0.9], ["wheel_2_2_steering", 0.9], ["karoserie", 0.9]];
+			
+			//TODO: Decide if fuel should be handled normally
+			//Parts we want to be damaged normally
+			private _partsToDmgNormally = ["spare1", "door11", "door12", "door21", "door22", "hood1", "hit_fuel"];
+
+			private _dmgMapping = _partToDmgMapping get _partHit;
+
+			//Tried to use str wrapping since isNil doesn't like, doesn't work how I want
+			//isNull doesn't work - trying _dmgMapping isEqualTo objNull
+			if(_dmgMapping isEqualTo objNull) then {
+
+				if(_partHit in _partsToDmgNormally) then {
+					[format["HandleDamage: Normal dmg calc for %1", _partHit]] call messyEvac_fnc_debugLog;
+					//Not even using 'return;' since that qualifies as us handling the dmg instead of it being interpretted as no value returned so the game handles it
+				} else {
+					[format["HandleDamage: Hit Not Found %1", _partHit]] call messyEvac_fnc_debugLog;
+					//Not even using 'return;' since that qualifies as us handling the dmg instead of it being interpretted as no value returned so the game handles it
+				};
+			} else {
+				[format["HandleDamage: Returning %1 for %2", _dmgMapping, _partHit]] call messyEvac_fnc_debugLog;
+				//Only return a value if we want to handle the dmg ourselves
+				_dmgMapping;
+			};
 		};
 	}];
 
@@ -95,16 +99,7 @@ _respawnVehicles = [_eastVehicle, _southVehicle];
 	// 	_unit = _this select 0;
 	// 	_damage = _this select 2;
 
-	// 	[format["Damage Respawn Vehicles - Dammaged: %1", _this]] call messyEvac_fnc_debugLog;
-
-
-	// 	//TODO: Check if certain parts of the vehicle can be maintained to a certain %
-	// 	//	Vehicle part dmg might not affect its setDamage
-	// 	// if ((damage _unit + _damage) <= 0.7) then {
-	// 	// 	_unit setDamage (damage _unit) + _damage;
-	// 	// } else {
-	// 	// 	return;
-	// 	// };
+	// 	[format["Dammaged: %1 dammaged for %2. Health: %2", _unit, _damage, damage _unit]] call messyEvac_fnc_debugLog;
 	// }];
 
 	/* HitPart event mapping
