@@ -27,18 +27,22 @@ for [{private _i = 0}, {_i < _desiredHeloCount}, {_i = _i + 1}] do {
 		_truckWheels = _truckInfo select 1;
 
 		_spawn = selectRandom _spawnLocations;
-		[format["Truck Selected Spawn - %1", _spawn]] call messyEvac_fnc_debugLog;
+		[format["Truck Spawns - Selected: %1", _spawn]] call messyEvac_fnc_debugLog;
 
 		//Remove used spawn from the list so we don't spawn in the same spots
 		_spawnLocations = _spawnLocations - [_spawn];
-		[format["Truck Remaining Spawns - %1", _spawnLocations]] call messyEvac_fnc_debugLog;
+		[format["Truck Spawns - Remaining: %1", _spawnLocations]] call messyEvac_fnc_debugLog;
 
 		_truck = _truckType createVehicle (_spawn select 0);//POS from spawn[]
 		_truck setDir (_spawn select 1);//ROT from spawn[]
+		
+		//Comment for sanity check since the repair kits weren't present in hosted server for testing
+		[format["Truck Spawns - Type of Truck: %1. Repair Type: %2", typeOf _truck, ME_REPAIR_VEHICLE_TYPE]] call messyEvac_fnc_debugLog;
 
 		//If we're making a repair vehicle, spawn two repair kit in the back of item
 		if(typeOf _truck == ME_REPAIR_VEHICLE_TYPE) then {
-			_truck addItemCargo ["ToolKit",2];
+			[format["Truck Spawns - Adding Toolkits to: %1", _truck]] call messyEvac_fnc_debugLog;
+			_truck addItemCargoGlobal ["ToolKit",2];//Was addItemCargo - didn't work on server but this block was reached
 		};
 		
 		[format["Truck %1 - Init", _truck]] call messyEvac_fnc_debugLog;

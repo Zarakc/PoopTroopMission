@@ -46,120 +46,57 @@ _respawnVehicles = [_eastVehicle, _southVehicle];
 		_currentVehicle setHitPointDamage [_x, 0.9];
 	} forEach _wheelScenario;//There is one spare, so it could be used to partially mitigate the wheel dmg
 
-	//Test out onHit to see if we can mitigate teh damage without making the vehicle immune
+	//Fuel scenarios for respawn vehicles
+	private _fuelAmountScenarios = [0.17, 0.14, 0.11, 0.008, 0.007];
+	private _fuelSetAmount = selectRandom _fuelAmountScenarios;
+	_currentVehicle setFuel _fuelSetAmount;
 
+	//TODO: EventHandler doesn't play nice in a hosted server since it needs to execute on the 'owner' of the vehicle's PC
+	//	The owner changes during the run, usu. the person to last drive it
 	//If the provided code returns a numeric value, 
 	//	this value will overwrite the default damage of given selection after processing. 
 	//If no value is returned, the default damage processing will be done - 
 	//	this allows for safe stacking of this event handler.
-	_currentVehicle addEventHandler ["HandleDamage", {
-		_unit = _this select 0;
-		_partHit = _this select 1;
-		_damage = _this select 2;
-
-		//Saw instances of 0 damage going through the flow, so cutting them off earlier
-		//Testing if removal of not targetted
-		if(_damage == 0 or _partHit isEqualTo "") then {
-			[format["HandleDamage: Skipping - Dmg: %1 Part: %2", _damage, _partHit]] call messyEvac_fnc_debugLog;
-			0;//Trying to haave 0 as the return and everything else being in the else block since the skipping wasn't working
-		} else {
-			[format["HandleDamage: %1's %2 being hit for %3", _unit, _partHit, _damage]] call messyEvac_fnc_debugLog;
-
-			//Parts we have (likely) already damaged that we want to not break/heal
-			private _partToDmgMapping = createHashMapFromArray[["hit_engine", 0.8], ["wheel_1_1_steering", 0.9], ["wheel_1_2_steering", 0.9], ["wheel_2_1_steering", 0.9], ["wheel_2_2_steering", 0.9], ["karoserie", 0.9]];
-			
-			//TODO: Decide if fuel should be handled normally
-			//Parts we want to be damaged normally
-			private _partsToDmgNormally = ["spare1", "door11", "door12", "door21", "door22", "hood1", "hit_fuel"];
-
-			private _dmgMapping = _partToDmgMapping get _partHit;
-
-			//Tried to use str wrapping since isNil doesn't like, doesn't work how I want
-			//isNull doesn't work - trying _dmgMapping isEqualTo objNull
-			if(_dmgMapping isEqualTo objNull) then {
-
-				if(_partHit in _partsToDmgNormally) then {
-					[format["HandleDamage: Normal dmg calc for %1", _partHit]] call messyEvac_fnc_debugLog;
-					//Not even using 'return;' since that qualifies as us handling the dmg instead of it being interpretted as no value returned so the game handles it
-				} else {
-					[format["HandleDamage: Hit Not Found %1", _partHit]] call messyEvac_fnc_debugLog;
-					//Not even using 'return;' since that qualifies as us handling the dmg instead of it being interpretted as no value returned so the game handles it
-				};
-			} else {
-				[format["HandleDamage: Returning %1 for %2", _dmgMapping, _partHit]] call messyEvac_fnc_debugLog;
-				//Only return a value if we want to handle the dmg ourselves
-				_dmgMapping;
-			};
-		};
-	}];
-
-	//Dammaged had the hitPoint named used for setDmg on vehicle components
-	// _currentVehicle addEventHandler ["Dammaged", {
-	// 	//params ["_unit", "_selection", "_damage", "_hitIndex", "_hitPoint", "_shooter", "_projectile"];
+	[format["Damage Respawn Vehicles - Calling EventHandler Addition for %1", _currentVehicle]] call messyEvac_fnc_debugLog;
+	[_currentVehicle] call messyEvac_fnc_addRespawnVicHandleDamage;
+	// _currentVehicle addEventHandler ["HandleDamage", {
 	// 	_unit = _this select 0;
+	// 	_partHit = _this select 1;
 	// 	_damage = _this select 2;
+	// 	_dmgSource = _this select 4;
 
-	// 	[format["Dammaged: %1 dammaged for %2. Health: %2", _unit, _damage, damage _unit]] call messyEvac_fnc_debugLog;
-	// }];
+	// 	[format["HandleDamage: %1", _this]] call messyEvac_fnc_debugLog;
 
-	/* HitPart event mapping
-	[
-		[
-			bdrm_southRespawn,	//target
-			B South Spectre:7 (Zarakc),	//shooter
-			2233466: tracer_red.p3d uk3cb_556x45_Ball_red,	//damage source
-			[12080.9,11984.3,115.166],	//PosASL of impact
-			[676.268,634.076,-73.4165],	//Impact velocity
-			[""hit_engine""],	//hit section
-			[9,0,0,0,""uk3cb_556x45_Ball_red""],	//Hit data [hitValue, indirectHitValue, indirectHitRange, Explosive Dmg, AmmoClass]
-			[0.209778,-0.977746,0.00265596], //Hit surface surfaceNormal
-			0.761373, //Radius of component hit
-			""a3\data_f\penetration\metal.bisurf"", //SurfaceType hit
-			true, //splash dmg
-			B South Spectre:7 (Zarakc)
-		]
-	] 
-	*/
-	// _currentVehicle addEventHandler ["HitPart", {
-	// 	//params ["_target", "_shooter", "_projectile", "_position", "_velocity", "_selection", "_ammo", "_vector", "_radius", "_surfaceType", "_isDirect", "_instigator"];
-		
-	// 	[format["DRV - HitPart called with: %1", _this]] call messyEvac_fnc_debugLog;
+	// 	//Saw instances of 0 damage going through the flow, so cutting them off earlier
+	// 	//Testing if removal of not targetted
+	// 	if(_damage == 0 or _partHit isEqualTo "") then {
+	// 		[format["HandleDamage: Skipping - Dmg: %1 Part: %2", _damage, _partHit]] call messyEvac_fnc_debugLog;
+	// 		0;//Trying to haave 0 as the return and everything else being in the else block since the skipping wasn't working
+	// 	} else {
+			
+	// 		//If someone drives into the minefield, don't let them make it through the minefield
+	// 		if (_dmgSource == "APERSMine_Range_Ammo") then {
+	// 			[format["HandleDamage: Hit with: %1 you deserve the %2 damage", _dmgSource, _damage]] call messyEvac_fnc_debugLog;
+	// 		} else {
+	// 			[format["HandleDamage: %1's %2 being hit for %3", _unit, _partHit, _damage]] call messyEvac_fnc_debugLog;
 
-	// 	_triggerData = _this select 0;
-	// 	_vehicleHit = _triggerData select 0;
+	// 			//Parts don't want to handle dmg normally - essentially cap their dmg
+	// 			private _partToDmgMapping = createHashMapFromArray[["hit_engine", 0.8], ["hit_fuel", 0.8], ["wheel_1_1_steering", 0.9], ["wheel_1_2_steering", 0.9], ["wheel_2_1_steering", 0.9], ["wheel_2_2_steering", 0.9]];
 
-	// 	[format["DRV - HitPart called for: %1", _vehicleHit]] call messyEvac_fnc_debugLog;
+	// 			private _dmgMapping = _partToDmgMapping get _partHit;
 
-	// 	//Part hit is stored in an array
-	// 	_partsHit = _triggerData select 5;
-	// 	[format["DRV - HitPart on: %1", _partHit]] call messyEvac_fnc_debugLog;
-
-	// 	_hpd = _vehicleHit getHitPointDamage "hitengine";
-	// 	[format["DRV - HitPart Engine HPD: %1", _hpd]] call messyEvac_fnc_debugLog;
-
-	// 	_partHit = _partsHit findIf {_x == "hit_engine"};
-
-	// 	if(_partHit != -1) then {
-	// 		if(_hpd >= 0.8) then {
-	// 			_vehicleHit setHitPointDamage ["hitengine", 0.8];//This did not appear to be occurring, or engine was being damaged otherwise
-	// 			_newHpd = _vehicleHit getHitPointDamage "hitengine";
-				
-	// 			[format["DRV - HitPart Engine Dmg: %1 Restored to %2", _hpd, _newHpd]] call messyEvac_fnc_debugLog;
+	// 			//If we don't find a mapping for a capped damage part
+	// 			//	Check if we dmg it normally
+	// 			if(isNil "_dmgMapping") then {
+	// 				[format["HandleDamage: Normal dmg calc for %1", _partHit]] call messyEvac_fnc_debugLog;
+	// 			} else {
+	// 				[format["HandleDamage: Returning %1 for %2", _dmgMapping, _partHit]] call messyEvac_fnc_debugLog;
+	// 				//Could possibly look to run a dmg call on another part to emulate overflow and still cap this part?
+	// 				//Only return a value if we want to handle the dmg ourselves
+	// 				_dmgMapping;
+	// 			};
 	// 		};
-
-	// 		return;
 	// 	};
-
-	// 	_locationHit = _triggerData select 5;
-	// 	[format["DRV - HitPart on: %1", _locationHit]] call messyEvac_fnc_debugLog;
-
-	// 	//_damage = _hitter select 0;
-		
-	// 	//[format[" - HitPart: %1 being hit for %2", _selection, _damage]] call messyEvac_fnc_debugLog;
-
 	// }];
 
-	//After we rough up the vehicle, ensure it doesn't blow up.
-	//_currentVehicle allowDamage false;
-	//[format["Damage Respawn Vehicles - %1 is now immune to damage", _currentVehicle]] call messyEvac_fnc_debugLog;
 } forEach _respawnVehicles;

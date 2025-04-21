@@ -1,5 +1,6 @@
 Current TODO: Look into spacing out/ironing out reinforce timing/numbers
-    - See if another fuel can is usable that can be moved once unloaded
+    - Add the addRespawnVicHandleDamage to the playerInit for the server (playerInitServer.sqf might need to be added)
+    - Validate removal of checking the vehicles in the HandleDamage function
 
 WEST is BLUFOR
 

@@ -47,6 +47,7 @@ for [{private _i = 0}, {_i < _desiredHeloCount}, {_i = _i + 1}] do {
 	//Update the mission variable with the helo
 	missionNamespace setVariable [ME_HELOS, _helos];
 
+	//TODO: Likely have server 'owner' issue with this eventHandler being called
 	//Set up a trigger to be called if the helo is destroyed
 	_helo addEventHandler ["Killed", {_this call messyEvac_fnc_heloDestroyed}];
 

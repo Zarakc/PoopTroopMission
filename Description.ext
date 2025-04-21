@@ -109,6 +109,13 @@ class CfgFunctions
 			class heloCombineTriggers{};
 		}
 
+		class truckFunctions
+		{
+			file = "messyEvac\scripts\trucks";
+			class respawnVicHandleDamage {};
+			class addRespawnVicHandleDamage {};
+		}
+
 		class respawnFunctions
 		{
 			file = "messyEvac\scripts\respawn";
