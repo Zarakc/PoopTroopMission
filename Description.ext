@@ -104,6 +104,7 @@ class CfgFunctions
 			file = "messyEvac\scripts\helos";
 			class helosLeft {};
 			class heloDestroyed {};
+			class heloSingleEvac {};
 			class heloTriggerSetUp {};
 			class heloEvacTriggered {};
 			class heloCombineTriggers{};

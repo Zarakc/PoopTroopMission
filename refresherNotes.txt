@@ -1,6 +1,11 @@
 Current TODO: Look into spacing out/ironing out reinforce timing/numbers
     - Add the addRespawnVicHandleDamage to the playerInit for the server (playerInitServer.sqf might need to be added)
     - Validate removal of checking the vehicles in the HandleDamage function
+    - Enhance Helo Left Trigger to consider their destruction to message differently?
+        -Leave trigger might not be using the trigger area set up for it?
+        -Have callout for single helo leaving before both have
+    - Validate the Helo player init works on the hosted server
+    - Look through ACE Medical settings to see where to beef folks up or at least blood flow n such
 
 WEST is BLUFOR
 

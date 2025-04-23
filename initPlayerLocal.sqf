@@ -29,17 +29,26 @@ if(ME_LOCAL_SCRIPTS == true) then {
 	//initServer is shown to run before initPlayerLocal as per https://community.bistudio.com/wiki/Initialisation_Order
 	//	So the hope is that is all taken care of before this runs
 	//Helo EventHandler
-	// "Player Init - Helo Block" call messyEvac_fnc_debugLog;
+	"Player Init - Helo Block" call messyEvac_fnc_debugLog;
 	
-	// waitUntil { sleep 2; missionNamespace getVariable [ME_HELOS, false]};
-	// "Player Init - Helo Block - Post Wait" call messyEvac_fnc_debugLog;
+	waitUntil { 
+		sleep 2;
+		_helos = missionNamespace getVariable ME_HELOS;
+		try {//Handling for when _helos is undefined
+			[format["Player Init - Helo Block Wait- Helos %1", _helos]] call messyEvac_fnc_debugLog;
+			count _helos > 0 
+		} catch {
+			false
+		}
+	};
+	"Player Init - Helo Block - Post Wait" call messyEvac_fnc_debugLog;
 
-	// private _helos = missionNamespace getVariable ME_HELOS;
-	// [format["Player Init - Helo Block - Helos %1", _helos]] call messyEvac_fnc_debugLog;
+	private _helos = missionNamespace getVariable ME_HELOS;
+	[format["Player Init - Helo Block - Helos %1", _helos]] call messyEvac_fnc_debugLog;
 
-	// {
-	// 	[format["Player Init - Helo Killed EH - Player Addition %1 for HandleDamage on %2", _player, _x]] call messyEvac_fnc_debugLog;
-	// 	_x addEventHandler ["Killed", {_x call messyEvac_fnc_heloDestroyed}];
-	// } forEach _helos;
+	{
+		[format["Player Init - Helo Killed EH - Player Addition %1 for HandleDamage on %2", _player, _x]] call messyEvac_fnc_debugLog;
+		_x addEventHandler ["Killed", {_x call messyEvac_fnc_heloDestroyed}];
+	} forEach _helos;
 
 };
