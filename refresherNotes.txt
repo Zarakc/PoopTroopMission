@@ -1,9 +1,6 @@
 Current TODO: Look into spacing out/ironing out reinforce timing/numbers
-    - Validate removal of checking the vehicles in the HandleDamage function
-    - Double check after cleanup
-        -Triple check after enabling regular helo count calc
-
-    - Look through ACE Medical settings to see where to beef folks up or at least blood flow n such
+    - See if the mines trigger can loop with activation
+    - Bother disabling respawn after helos leave?
 
 WEST is BLUFOR
 

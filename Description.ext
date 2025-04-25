@@ -1,6 +1,6 @@
 briefingName = "Messy Evacuation";
 onLoadName = "Messy Evacuation";
-onLoadMission = "The intended mission has gone awry, now there's a last-ditch effort to escape by commandeering helos from the nearby airfield";
+onLoadMission = "The mission is scrapped, the other squads missed the rendezvous. We're rallying up for a desperate effort to commandeer helos from the nearby airfield to get out of here.";
 
 //Corpse Despawn Settings
 corpseLimit = 20;

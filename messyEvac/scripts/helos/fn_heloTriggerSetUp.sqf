@@ -22,9 +22,6 @@ _trigger setTriggerArea ME_HELO_AIRFIELD_ZONE_AREA;
 _trigger setTriggerInterval 2;
 _trigger triggerAttachVehicle [_helo];
 
-//Trying to add a delay in the hopes that 'alive' reaches eventual consistency
-_trigger setTriggerTimeout[5, 7, 10, false];
-
 _trigger setTriggerStatements [
 	"this",//Activate trigger bool condition
 	"[thisTrigger] call messyEvac_fnc_heloSingleEvac",//Activation code
