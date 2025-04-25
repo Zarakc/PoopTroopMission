@@ -1,13 +1,7 @@
 Current TODO: Look into spacing out/ironing out reinforce timing/numbers
     - Validate removal of checking the vehicles in the HandleDamage function
-    - Enhance Helo Left Trigger to consider their destruction to message differently?
-        -Leave trigger might not be using the trigger area set up for it?
-        -Have callout for single helo leaving before both have
-
-        DO THIS BELOW!?
-    - CHeck if singleton Helo leave trigger can be used for both destruction and evac
-        -Damage is not a good check since it's separate from part damage? And ALive can return incorrectly
-    - Ensure both helo's are damage when 2+ are present
+    - Double check after cleanup
+        -Triple check after enabling regular helo count calc
 
     - Look through ACE Medical settings to see where to beef folks up or at least blood flow n such
 

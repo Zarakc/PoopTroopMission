@@ -23,12 +23,3 @@ if(alive triggerAttachedVehicle _trigger) then {
 } else {
 	[triggerAttachedVehicle _trigger, _numLeft, _heloEvacTriggers] call messyEvac_fnc_heloDestroyed;
 };
-
-// if(count _heloEvacTriggers > 1) then {
-// 	_heloEvacTriggers = _heloEvacTriggers - [_trigger];
-
-// 	if(!triggerActivated (_heloEvacTriggers select 0)) then {
-// 		[format["Helo Single Evac - One of the helo's has successfully evacced. Hopefully you don't need to draw straws for the remaining %1.", (_numLeft -1)]] call messyEvac_fnc_debugLog;
-// 		[format["One of the helo's has successfully evacced. Hopefully you don't need to draw straws for the remaining %1.", (_numLeft -1)]] call messyEvac_fnc_systemChat;
-// 	};
-// };

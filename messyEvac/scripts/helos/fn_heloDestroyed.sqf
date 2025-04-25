@@ -2,17 +2,7 @@
 
 params["_helo", "_numLeft", "_heloEvacTriggers"];
 
-//private _numLeft = call messyEvac_fnc_helosLeft;
-//private _heloEvacTriggers = missionNamespace getVariable ME_HELO_TRIGGERS_VARNAME;
-
 [format["Helo Destroyed - %1. %2 Left", _helo, _numLeft]] call messyEvac_fnc_debugLog;
-
-//If there are/have been multiple helos
-	//Check if there are more left
-		//If so, more chances text
-		//Else, SOL
-//If only one
-	//SOL
 
 if(count _heloEvacTriggers > 1) then {
 	if(_numLeft isEqualTo 0) then {

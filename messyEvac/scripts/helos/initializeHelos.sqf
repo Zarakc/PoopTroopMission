@@ -49,11 +49,6 @@ for [{private _i = 0}, {_i < _desiredHeloCount}, {_i = _i + 1}] do {
 	missionNamespace setVariable [ME_HELOS, _helos, true];//Did not include bool param
 	[format["Helo Init - Helos to save to variable - %1", missionNamespace getVariable ME_HELOS]] call messyEvac_fnc_debugLog;
 
-	//TODO: Likely have server 'owner' issue with this eventHandler being called
-	//Set up a trigger to be called if the helo is destroyed
-	//_helo addEventHandler ["Killed", {_this call messyEvac_fnc_heloDestroyed}];
-	//TODO: Check about setup trigger activation being used for destruction as well
-
 	[_helo] execVM ME_HELO_INIT_DAMAGE;
 
 	[format["Helo Init - %1 - Calling Trigger", _helo]] call messyEvac_fnc_debugLog;
