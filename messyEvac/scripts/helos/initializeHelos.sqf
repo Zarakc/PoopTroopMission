@@ -51,7 +51,8 @@ for [{private _i = 0}, {_i < _desiredHeloCount}, {_i = _i + 1}] do {
 
 	//TODO: Likely have server 'owner' issue with this eventHandler being called
 	//Set up a trigger to be called if the helo is destroyed
-	_helo addEventHandler ["Killed", {_this call messyEvac_fnc_heloDestroyed}];
+	//_helo addEventHandler ["Killed", {_this call messyEvac_fnc_heloDestroyed}];
+	//TODO: Check about setup trigger activation being used for destruction as well
 
 	[_helo] execVM ME_HELO_INIT_DAMAGE;
 

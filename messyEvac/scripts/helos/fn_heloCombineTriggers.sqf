@@ -54,7 +54,7 @@ _test = {
 
 _combinedTrigger setTriggerStatements [
 	/* Condition */ _combinedActivatedStr,
-	/* Activated Statement */"if(([""Helo Combined Activated Statement""] call messyEvac_fnc_helosLeft) > 0) then {[] call messyEvac_fnc_heloEvacTriggered;};",
+	/* Activated Statement */"if((call messyEvac_fnc_helosLeft) > 0) then {[] call messyEvac_fnc_heloEvacTriggered;};",
 	/* Deactivated Statement */
 	""
 ];

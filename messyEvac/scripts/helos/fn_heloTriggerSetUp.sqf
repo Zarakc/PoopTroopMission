@@ -19,14 +19,17 @@ private _trigger = createTrigger ["EmptyDetector", ME_HELO_AIRFIELD_ZONE_POS];
 //NOT PRESENT so when the helo has left the area/been destroyed, it triggers
 _trigger setTriggerActivation ["VEHICLE", "NOT PRESENT", false];
 _trigger setTriggerArea ME_HELO_AIRFIELD_ZONE_AREA;
-_trigger setTriggerInterval 5;
+_trigger setTriggerInterval 2;
 _trigger triggerAttachVehicle [_helo];
-//_trigger setEffectCondition "this"; Don't think this is needed
-_trigger setTriggerStatements [//TODO: Normal leave no longer worked - destroy did only call itself though
-	"this",//Return bool value - Manual one is returning 'this' as the condition
-	"[thisTrigger] call messyEvac_fnc_heloSingleEvac",//[format[""Helo Singleton Leave Trigger - %1 - Helos Left - %2"", _helo, [""Helo Singleton Leave Trigger""] call messyEvac_fnc_helosLeft]] call messyEvac_fnc_debugLog;",//"[""Helo Loss"", false, 2] call BIS_fnc_endMission",
-	"[""Helo Loss"", false, 2] call BIS_fnc_endMission"
-];//Helo any - Leave Triggered. Helos Left: 0"
+
+//Trying to add a delay in the hopes that 'alive' reaches eventual consistency
+_trigger setTriggerTimeout[5, 7, 10, false];
+
+_trigger setTriggerStatements [
+	"this",//Activate trigger bool condition
+	"[thisTrigger] call messyEvac_fnc_heloSingleEvac",//Activation code
+	""//Deactivation code
+];
 
 missionNameSpace setVariable [_varName, _trigger];
 [format["Helo Trigger Setup - %1 - Trigger %2 Setup - Created var %3", _helo, _i, _varName]] call messyEvac_fnc_debugLog;
@@ -46,4 +49,4 @@ _heloEscapeTriggers append [_trigger];
 //Actually setting the variable so it can be grabbed is nice
 missionNamespace setVariable [ME_HELO_TRIGGERS_VARNAME, _heloEscapeTriggers];
 
-[format["Helo Trigger Setup - %1 - Trigger Vehicle %2", _helo, triggerAttachedVehicle _trigger]] call messyEvac_fnc_debugLog;
+[format["Helo Trigger Setup - Trigger %1 - Helo %2 - Trigger Vehicle %3", _trigger, _helo, triggerAttachedVehicle _trigger]] call messyEvac_fnc_debugLog;

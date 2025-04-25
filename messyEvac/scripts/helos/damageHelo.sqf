@@ -10,8 +10,6 @@ _dmgScenario = selectRandom ME_HELO_DISABLED_SCENARIOS;
 
 [format["Helo Damage - %1 - Scenario: %2", _helo, _dmgScenario]] call messyEvac_fnc_debugLog;
 
-["Helo Init Damage"] call messyEvac_fnc_helosLeft;
-
 //For each part/dmg combo in the scenario, set that dmg for that part
 {
 	//[_partToDamage, _dmgAmount]
