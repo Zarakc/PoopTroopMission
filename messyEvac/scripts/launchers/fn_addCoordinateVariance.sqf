@@ -5,6 +5,7 @@ params["_targetPos"];
 
 ["Add Coordinate Variance - Called"] call messyEvac_fnc_debugLog;
 
+//TODO: Add minimum variance to ensure safe space?
 _xRand = random ME_LAUNCHER_COORDINATE_VARIANCE + (_tarPos select 0);
 _yRand = random ME_LAUNCHER_COORDINATE_VARIANCE + (_tarPos select 1);
 _adjustedPos = [_xRand, _yRand, _targetPos select 2];

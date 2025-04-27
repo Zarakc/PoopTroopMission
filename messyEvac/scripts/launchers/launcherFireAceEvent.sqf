@@ -16,7 +16,7 @@ eventHandlerVehicle = {
 		_matchedVehicle = _launchers select _isFoundIndex;
 
 		_unitGroup = _matchedVehicle getVariable ME_LAUNCHER_UNITGROUP_VARNAME;
-		[format["Launcher Trigger - (findId) Vehicle matched %1 - Group %2", _vehicle, _unitGroup]] call messyEvac_fnc_debugLog;
+		//[format["Launcher Trigger - (findId) Vehicle matched %1 - Group %2", _vehicle, _unitGroup]] call messyEvac_fnc_debugLog;
 
 		//Get velocity of projectile then set our pod's position to it.
 		_projectileVelocity = velocity _projectile;
@@ -24,7 +24,7 @@ eventHandlerVehicle = {
 		deleteVehicle _projectile;
 		_pod setVelocity _projectileVelocity;
 
-		["Launcher Trigger - Calling podEnrouteSequence"] call messyEvac_fnc_debugLog;
+		//["Launcher Trigger - Calling podEnrouteSequence"] call messyEvac_fnc_debugLog;
 		[_pod, _unitGroup, _vehicle] execVM ME_POD_SEQUENCE_START;
 	};
 };
