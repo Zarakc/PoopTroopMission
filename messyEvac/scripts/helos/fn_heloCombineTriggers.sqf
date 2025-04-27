@@ -2,18 +2,19 @@
 
 //Combined trigger fires if all spawned helo's for the mission leave the airfield
 // this can be physically leaving the area of being destroyed
-_heloEscapeTriggers = missionNamespace getVariable ME_HELO_TRIGGERS_VARNAME;
+private _heloEscapeTriggers = missionNamespace getVariable ME_HELO_TRIGGERS_VARNAME;
 
 //Figure out how we can grab multiple triggers and add each of them having triggered onto a newly created trigger
-_combinedTrigger = createTrigger ["EmptyDetector", /*Don't care about position*/ME_HELO_POS_1];
+private _combinedTrigger = createTrigger ["EmptyDetector", /*Don't care about position*/ME_HELO_POS_1];
+_combinedTrigger setTriggerInterval 5;
 
 //Grab the triggerNames from the trigger mission variable
-_triggersActivated = [];
-_combinedActivatedStr = "";
+private _triggersActivated = [];
+private _combinedActivatedStr = "";
 
-_triggerCount = count _heloEscapeTriggers;
+private _triggerCount = count _heloEscapeTriggers;
 
-_haveMultipleTriggers = _triggerCount > 1;
+private _haveMultipleTriggers = _triggerCount > 1;
 
 [format["Helo Combine Triggers - Multiple Triggers? %1", _haveMultipleTriggers]] call messyEvac_fnc_debugLog;
 
@@ -41,18 +42,19 @@ _haveMultipleTriggers = _triggerCount > 1;
 } forEach _heloEscapeTriggers;
 
 _combinedActivatedStr = _combinedActivatedStr + ";";
+[format["Helo Combine Triggers - Combined Activation String: %1", _combinedActivatedStr]] call messyEvac_fnc_debugLog;
 
 _testTrigger = missionNamespace getVariable "shellForStatements";
 _pullStatementStr = (triggerStatements _testTrigger) select 1;
 
 _test = {
-		[format["Helo Combined Trigger - Helo Triggers %1 Activated", str (count _heloEscapeTriggers)]] call messyEvac_fnc_debugLog;
+		[format["Helo Combine Triggers - Helo Triggers %1 Activated", str (count _heloEscapeTriggers)]] call messyEvac_fnc_debugLog;
 		["ace_spectatorSet", ""] call CBA_fnc_remoteEvent;
 	};
 
 _combinedTrigger setTriggerStatements [
 	/* Condition */ _combinedActivatedStr,
-	/* Activated Statement */"[] call messyEvac_fnc_heloEvacTriggered;",
+	/* Activated Statement */"if((call messyEvac_fnc_helosLeft) > 0) then {[] call messyEvac_fnc_heloEvacTriggered;};",
 	/* Deactivated Statement */
 	""
 ];
@@ -61,6 +63,6 @@ _combinedTrigger setTriggerStatements [
 // likely would need to also disable the respawn generally for those that were dead
 //["ace_spectatorSet", ""] call CBA_fnc_remoteEvent;
 
-[format["Helo Combine Triggers: %1", _combinedActivatedStr]] call messyEvac_fnc_debugLog;
+[format["Helo Combine Triggers - %1", _combinedActivatedStr]] call messyEvac_fnc_debugLog;
 
 _combinedTrigger;

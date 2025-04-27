@@ -11,8 +11,6 @@ _southVehicle = missionNamespace getVariable _southRespawnVehicleName;
 
 [format["Damage Respawn Vehicles - %1 and %2", _eastVehicle, _southVehicle]] call messyEvac_fnc_debugLog;
 
-//TODO: FUCK THIS, BOTH SIDES GET A JEEP AND HAVE A DERELICT VEHICLE THAT HELPED GET THEM TO THE START
-
 _respawnVehicles = [_eastVehicle, _southVehicle];
 
 {
@@ -48,7 +46,12 @@ _respawnVehicles = [_eastVehicle, _southVehicle];
 		_currentVehicle setHitPointDamage [_x, 0.9];
 	} forEach _wheelScenario;//There is one spare, so it could be used to partially mitigate the wheel dmg
 
-	//After we rough up the vehicle, ensure it doesn't blow up.
-	_currentVehicle allowDamage false;
-	[format["Damage Respawn Vehicles - %1 is now immune to damage", _currentVehicle]] call messyEvac_fnc_debugLog;
+	//Fuel scenarios for respawn vehicles
+	private _fuelAmountScenarios = [0.17, 0.14, 0.11, 0.008, 0.007];
+	private _fuelSetAmount = selectRandom _fuelAmountScenarios;
+	_currentVehicle setFuel _fuelSetAmount;
+
+	[format["Damage Respawn Vehicles - Calling EventHandler Addition for %1", _currentVehicle]] call messyEvac_fnc_debugLog;
+	[_currentVehicle] call messyEvac_fnc_addRespawnVicHandleDamage;
+
 } forEach _respawnVehicles;

@@ -1,5 +1,6 @@
 Current TODO: Look into spacing out/ironing out reinforce timing/numbers
-    - Lay out 'mine' trigger to blow people up in the marked treelines
+    - See if the mines trigger can loop with activation
+    - Bother disabling respawn after helos leave?
 
 WEST is BLUFOR
 
@@ -41,3 +42,6 @@ execVM: async
 
     _handle = player execVM "test.sqf";
     waitUntil { scriptDone _handle };
+
+systemChat only shows on executed PC - will not show to players
+"msg" remoteExec ["systemChat"] should work! Let's see!
